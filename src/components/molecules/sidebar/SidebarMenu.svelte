@@ -1,32 +1,36 @@
-<ul>
-	<li>
-		<a
-			class="text-black bg-gray-50 rounded-xl mb-2 px-4 py-3.5 flex items-center text-base font-medium relative justify-between"
-			href="/post"
-		>
-			<span class="text">Get Started</span>
-			<span class="icon">ar</span>
-		</a>
+<script lang="ts">
+	import SidebarMenuPosSub from '@components/molecules/sidebar/SidebarMenuPosSub.svelte';
+	import type { SidebarMenuType } from '@typed/sidebarMenu';
 
-		<!-- Sub menu -->
-		<ul class="border-l">
-			<li>
-				<a
-					class="text-gray-800 hover:text-black pr-4 pl-6 py-3.5 flex items-center text-base relative justify-between"
-					href="/post"
-				>
-					<span class="text">Installation</span>
-				</a>
-			</li>
-			<li>
-				<a
-					class="text-gray-800 hover:text-black pr-4 pl-6 py-3.5 flex items-center text-base relative justify-between"
-					href="/post"
-				>
-					<span class="text">Configuration</span>
-				</a>
-			</li>
-		</ul>
-		<!-- End of Sub menu -->
-	</li>
+	export let slug: string = '';
+
+	let menus: SidebarMenuType[] = [
+		{
+			title: 'Get Started',
+			submenu: [
+				{
+					title: 'Installation',
+					href: `/post/${slug}`
+				},
+				{
+					title: 'Configuration',
+					href: `/post/${slug}`
+				},
+				{
+					title: 'Usage',
+					href: `/post/${slug}`
+				},
+				{
+					title: 'Playground',
+					href: `/post/${slug}`
+				}
+			]
+		}
+	];
+</script>
+
+<ul>
+	{#each menus as menu}
+		<SidebarMenuPosSub {menu} hasSubmenu={!!menu.submenu} />
+	{/each}
 </ul>
