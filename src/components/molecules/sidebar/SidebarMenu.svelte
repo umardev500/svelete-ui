@@ -25,6 +25,35 @@
 					href: `/post/${slug}`
 				}
 			]
+		},
+		{
+			title: 'Guides',
+			submenu: [
+				{
+					title: 'Installation',
+					href: `/post/${slug}`
+				},
+				{
+					title: 'Configuration',
+					href: `/post/${slug}`
+				},
+				{
+					title: 'Usage',
+					href: `/post/${slug}`
+				},
+				{
+					title: 'Playground',
+					href: `/post/${slug}`
+				}
+			]
+		},
+		{
+			title: 'API',
+			href: `/post/${slug}`
+		},
+		{
+			title: 'Community',
+			href: `/post/${slug}`
 		}
 	];
 </script>

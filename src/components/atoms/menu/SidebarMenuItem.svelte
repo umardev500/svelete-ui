@@ -1,21 +1,21 @@
 <script lang="ts">
+	import AngleRight from '@components/atoms/icons/AngleRight.svelte';
 	import type { SidebarMenuType } from '@typed/sidebarMenu';
-	import AngleDownIcon from '../icons/AngleDownIcon.svelte';
 
 	export let hasSubmenu = false;
 	export let menu: SidebarMenuType;
 </script>
 
-<li>
+<li class="w-full">
 	<a
-		class="rounded-xl cursor-pointer mb-2 px-4 py-2.5 flex items-center text-base relative justify-between {hasSubmenu
+		class="rounded-xl cursor-pointer px-4 py-2.5 flex items-center text-base relative justify-between {hasSubmenu
 			? 'hover:bg-gray-50 font-medium text-black'
 			: 'text-gray-800'} "
 		href={menu.href}
 	>
 		<span class="text">{menu.title}</span>
 		{#if hasSubmenu}
-			<span class="icon"><AngleDownIcon classList="!size-5 fill-current" /></span>
+			<span class="icon"><AngleRight classList="!size-5 fill-current" /></span>
 		{/if}
 	</a>
 </li>
