@@ -3,6 +3,7 @@
 	import ArrowLeft from '@components/atoms/icons/ArrowLeft.svelte';
 	import ListIcon from '@components/atoms/icons/ListIcon.svelte';
 	import SidebarMenu from '@components/molecules/sidebar/SidebarMenu.svelte';
+	import type { SidebarMenuType } from '@typed/sidebarMenu';
 	import 'simplebar';
 	import 'simplebar/dist/simplebar.min.css';
 	import { createEventDispatcher } from 'svelte';
@@ -13,6 +14,62 @@
 	const toggle = () => {
 		dispatch('toggle');
 	};
+
+	let menus: SidebarMenuType[] = [
+		{
+			title: 'Get Started',
+			submenu: [
+				{
+					title: 'Installation',
+					href: `/post/get-started/installation`
+				},
+				{
+					title: 'Configuration',
+					href: `/post/get-started/configuration`
+				},
+				{
+					title: 'Usage',
+					href: `/post/get-started/usage`
+				},
+				{
+					title: 'Playground',
+					href: `/post/get-started/playground`
+				}
+			]
+		},
+		{
+			title: 'Guides',
+			submenu: [
+				{
+					title: 'Beginner Guide',
+					href: `/post/guides/beginner`
+				},
+				{
+					title: 'Intermediate Tips',
+					href: `/post/guides/intermediate`
+				},
+				{
+					title: 'Advanced Techniques',
+					href: `/post/guides/advanced`
+				},
+				{
+					title: 'Troubleshooting',
+					href: `/post/guides/troubleshooting`
+				}
+			]
+		},
+		{
+			title: 'API Reference',
+			href: `/post/api-reference`
+		},
+		{
+			title: 'Community Hub',
+			href: `/post/community-hub`
+		}
+	];
+
+	// @Todo
+	// Fetch Menus data from server
 </script>
 
 <aside class="sidebar {sidebarOpen ? 'show' : ''} bottom-0 top-0 left-0 pb-6 border-r">
@@ -39,7 +96,7 @@
 		<!-- End of Banner -->
 
 		<div class="px-4 py-6 text-nowrap menus">
-			<SidebarMenu slug="golang" />
+			<SidebarMenu {menus} />
 		</div>
 	</div>
 	<div class="border-t absolute h-[4.5rem] bg-white bottom-0 right-0 left-0 flex add-menu-button">
