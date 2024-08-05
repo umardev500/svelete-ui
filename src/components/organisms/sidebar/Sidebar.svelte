@@ -125,7 +125,7 @@
 				}
 
 				.toggler {
-					@apply right-5;
+					right: 1.25rem;
 				}
 			}
 
