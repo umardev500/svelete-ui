@@ -29,7 +29,7 @@
 	</div>
 
 	<!-- Content -->
-	<div class="h-full pb-[4.5rem]" data-simplebar>
+	<div class="bottom-[4.5rem] pb-4 absolute top-16 right-0 left-0" data-simplebar>
 		<!-- Banner -->
 		<enhanced:img
 			class="mx-auto px-6 mt-6 banner w-full"
@@ -41,9 +41,9 @@
 		<div class="px-4 py-6 text-nowrap menus">
 			<SidebarMenu slug="golang" />
 		</div>
-		<div class="border-t absolute h-[4.5rem] bottom-0 right-0 left-0 flex add-menu-button">
-			<SidebarAddNewMenu />
-		</div>
+	</div>
+	<div class="border-t absolute h-[4.5rem] bg-white bottom-0 right-0 left-0 flex add-menu-button">
+		<SidebarAddNewMenu />
 	</div>
 </aside>
 
