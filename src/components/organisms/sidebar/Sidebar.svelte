@@ -24,6 +24,11 @@
 			><ListIcon classList="!size-5 fill-current" /></button
 		>
 	</div>
+
+	<!-- Banner -->
+	<img class="mx-auto px-6 mt-6 banner" src="./src/lib/images/go-sidebar-banner.png" alt="banner" />
+	<!-- End of Banner -->
+
 	<div class="px-4 py-6 text-nowrap menus">
 		<SidebarMenu slug="golang" />
 	</div>
@@ -45,6 +50,13 @@
 	.sidebar {
 		width: 4.5rem;
 		transition: width var(--margin-transition-duration) var(--margin-timing-function);
+
+		.banner {
+			opacity: 0;
+			transition: opacity var(--margin-transition-duration) var(--margin-timing-function);
+			height: 71px;
+			object-fit: cover;
+		}
 
 		.heading {
 			justify-content: center;
@@ -84,6 +96,10 @@
 		}
 
 		&.show {
+			.banner {
+				opacity: 1;
+			}
+
 			.menus {
 				opacity: 1;
 				transform: translateX(0);
