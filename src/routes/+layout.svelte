@@ -13,7 +13,7 @@
 
 <Sidebar {sidebarOpen} on:toggle={toggleSidebar} />
 <Header {sidebarOpen} />
-<main style="--sidebar-width: {sidebarOpen ? '16.625rem' : '4.5rem'}">
+<main style="--sidebar-width: {sidebarOpen ? '22.125rem' : '4.5rem'}">
 	<slot></slot>
 </main>
 <Footer />

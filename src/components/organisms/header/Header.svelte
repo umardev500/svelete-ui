@@ -4,7 +4,7 @@
 	export let sidebarOpen: boolean;
 </script>
 
-<header style="--sidebar-width: {sidebarOpen ? '16.625rem' : '4.5rem'}">
+<header style="--sidebar-width: {sidebarOpen ? '22.125rem' : '4.5rem'}">
 	<nav class="px-4 h-16 border-b flex items-center justify-between">
 		<!-- Left menus -->
 		<LeftMenu />

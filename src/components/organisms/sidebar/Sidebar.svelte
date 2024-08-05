@@ -39,7 +39,7 @@
 	}
 
 	.sidebar.show {
-		width: 16.625rem;
+		width: 22.125rem;
 	}
 
 	.sidebar {
