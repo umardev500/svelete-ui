@@ -38,6 +38,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"simplebar": "^6.2.7"
+		"simplebar": "^6.2.7",
+		"sortablejs": "^1.15.2"
 	}
 }

@@ -102,6 +102,7 @@
 	<div class="border-t absolute h-[4.5rem] bg-white bottom-0 right-0 left-0 flex add-menu-button">
 		<SidebarAddNewMenu />
 	</div>
+	<!-- End of Content -->
 </aside>
 
 <style lang="scss">
