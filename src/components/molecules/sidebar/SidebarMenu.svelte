@@ -10,19 +10,19 @@
 			submenu: [
 				{
 					title: 'Installation',
-					href: `/post/${slug}`
+					href: `/post/get-started/installation`
 				},
 				{
 					title: 'Configuration',
-					href: `/post/${slug}`
+					href: `/post/get-started/configuration`
 				},
 				{
 					title: 'Usage',
-					href: `/post/${slug}`
+					href: `/post/get-started/usage`
 				},
 				{
 					title: 'Playground',
-					href: `/post/${slug}`
+					href: `/post/get-started/playground`
 				}
 			]
 		},
@@ -30,30 +30,30 @@
 			title: 'Guides',
 			submenu: [
 				{
-					title: 'Installation',
-					href: `/post/${slug}`
+					title: 'Beginner Guide',
+					href: `/post/guides/beginner`
 				},
 				{
-					title: 'Configuration',
-					href: `/post/${slug}`
+					title: 'Intermediate Tips',
+					href: `/post/guides/intermediate`
 				},
 				{
-					title: 'Usage',
-					href: `/post/${slug}`
+					title: 'Advanced Techniques',
+					href: `/post/guides/advanced`
 				},
 				{
-					title: 'Playground',
-					href: `/post/${slug}`
+					title: 'Troubleshooting',
+					href: `/post/guides/troubleshooting`
 				}
 			]
 		},
 		{
-			title: 'API',
-			href: `/post/${slug}`
+			title: 'API Reference',
+			href: `/post/api-reference`
 		},
 		{
-			title: 'Community',
-			href: `/post/${slug}`
+			title: 'Community Hub',
+			href: `/post/community-hub`
 		}
 	];
 </script>

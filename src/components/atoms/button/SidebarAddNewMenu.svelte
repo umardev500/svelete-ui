@@ -1,0 +1,12 @@
+<script lang="ts">
+	import PlusIcon from '@components/atoms/icons/PlusIcon.svelte';
+</script>
+
+<button
+	class="flex items-center justify-center gap-2 w-full py-4 text-emerald-600 hover:text-emerald-700 text-base font-medium"
+>
+	<PlusIcon />
+	<span>Add a New Menu</span>
+</button>
+
+<style></style>
