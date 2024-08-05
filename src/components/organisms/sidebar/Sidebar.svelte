@@ -27,7 +27,7 @@
 	<div class="px-4 py-6 text-nowrap menus">
 		<SidebarMenu slug="golang" />
 	</div>
-	<div class="border-t absolute h-[4.5rem] bottom-0 right-0 left-0 flex">
+	<div class="border-t absolute h-[4.5rem] bottom-0 right-0 left-0 flex add-menu-button">
 		<SidebarAddNewMenu />
 	</div>
 </aside>
@@ -75,6 +75,14 @@
 				transform var(--margin-transition-duration) var(--margin-timing-function);
 		}
 
+		.add-menu-button {
+			opacity: 0;
+			transform: translateX(-30px);
+			transition:
+				opacity var(--margin-transition-duration) var(--margin-timing-function),
+				transform var(--margin-transition-duration) var(--margin-timing-function);
+		}
+
 		&.show {
 			.menus {
 				opacity: 1;
@@ -93,6 +101,11 @@
 				.toggler {
 					@apply right-5;
 				}
+			}
+
+			.add-menu-button {
+				opacity: 1;
+				transform: translateX(0);
 			}
 		}
 	}
