@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import RightSidebar from '@components/organisms/sidebar/RightSidebar.svelte';
 </script>
 
