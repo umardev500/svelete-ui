@@ -9,6 +9,7 @@
 	let offset = 0;
 	let subMenuElement: HTMLElement;
 	let subMenuWrapperElement: HTMLElement;
+	const subMenuTopSpacing = 8;
 
 	onMount(() => {
 		isLoading = false;
@@ -17,7 +18,7 @@
 			return;
 		}
 		setTimeout(() => {
-			offset = subMenuElement.offsetHeight;
+			offset = subMenuElement.offsetHeight + subMenuTopSpacing;
 		}, 200);
 	});
 
