@@ -3,20 +3,10 @@
 	import SidebarMenuListing from '@components/molecules/sidebarMenuListing/SidebarMenuListing.svelte';
 	import type { params } from '@typed/page';
 	import type { Post } from '@typed/post';
-	import { onDestroy } from 'svelte';
-	import { postStore } from '../../../stores/postData';
 
 	$: parameters = $page.params as params;
 
-	let posts: Post[] = [];
-
-	const unsubscribe = postStore.subscribe((data) => {
-		posts = data;
-	});
-
-	onDestroy(() => {
-		unsubscribe();
-	});
+	export let posts: Post[] = [];
 </script>
 
 <ul>

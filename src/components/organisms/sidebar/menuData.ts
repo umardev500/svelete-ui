@@ -12,6 +12,18 @@ export const posts: Post[] = [
 			{
 				title: 'Installation',
 				slug: 'installation'
+			},
+			{
+				title: 'Configuration',
+				slug: 'configuration'
+			},
+			{
+				title: 'Usage',
+				slug: 'usage'
+			},
+			{
+				title: 'FAQ',
+				slug: 'faq'
 			}
 		]
 	}
