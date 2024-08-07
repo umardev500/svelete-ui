@@ -13,11 +13,33 @@
 	export let isSubmenu: boolean;
 
 	let instance: Sortable;
-
 	onMount(() => {
+		let options: Sortable.Options = {};
+		if (isSubmenu) {
+			options = {
+				onRemove: (e) => {
+					const targetEl = e.target;
+					const targetRect = targetEl.getBoundingClientRect();
+
+					const containerEl = targetEl.parentElement;
+
+					containerEl?.style.setProperty('--offset', `${targetRect.height}px`);
+				},
+				onAdd: (e) => {
+					const targetEl = e.target;
+					const targetRect = targetEl.getBoundingClientRect();
+
+					const containerEl = targetEl.parentElement;
+
+					containerEl?.style.setProperty('--offset', `${targetRect.height}px`);
+				}
+			};
+		}
+
 		instance = Sortable.create(sortableEl, {
 			group: 'nested',
-			animation: 150
+			animation: 150,
+			...options
 		});
 	});
 
