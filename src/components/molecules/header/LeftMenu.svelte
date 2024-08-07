@@ -17,7 +17,7 @@
 		<li>
 			<a
 				class={`text-gray-800 text-base ${currentRouteId === prefix + item.href ? 'font-medium' : ''}`}
-				href="/post">{item.title}</a
+				href="/post/golang/installation">{item.title}</a
 			>
 		</li>
 	{/each}

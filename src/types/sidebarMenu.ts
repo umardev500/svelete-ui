@@ -1,5 +1,5 @@
 export type SidebarMenuType = {
 	title: string;
-	href?: string;
+	slug?: string;
 	submenu?: SidebarMenuType[];
 };

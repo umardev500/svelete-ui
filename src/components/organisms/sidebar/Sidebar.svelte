@@ -2,7 +2,7 @@
 	import SidebarAddNewMenu from '@components/atoms/button/SidebarAddNewMenu.svelte';
 	import ArrowLeft from '@components/atoms/icons/ArrowLeft.svelte';
 	import ListIcon from '@components/atoms/icons/ListIcon.svelte';
-	import SidebarMenu from '@components/molecules/sidebar/SidebarMenu.svelte';
+	import SidebarMenuList from '@components/organisms/sidebar/SidebarMenuList.svelte';
 	import type { SidebarMenuType } from '@typed/sidebarMenu';
 	import 'simplebar';
 	import 'simplebar/dist/simplebar.min.css';
@@ -80,9 +80,9 @@
 			</span>
 			<span class="font-bold text-black">API Saga</span>
 		</div>
-		<button on:click={toggle} class="hover:text-gray-800 absolute right-4 toggler"
-			><ListIcon classList="!size-5 fill-current" /></button
-		>
+		<button on:click={toggle} class="hover:text-gray-800 absolute right-4 toggler">
+			<ListIcon classList="!size-5 fill-current" />
+		</button>
 	</div>
 
 	<!-- Content -->
@@ -96,7 +96,7 @@
 		<!-- End of Banner -->
 
 		<div class="px-4 py-6 text-nowrap menus">
-			<SidebarMenu {menus} />
+			<SidebarMenuList />
 		</div>
 	</div>
 	<div class="border-t absolute h-[4.5rem] bg-white bottom-0 right-0 left-0 flex add-menu-button">
