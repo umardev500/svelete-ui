@@ -1,5 +1,6 @@
 <script lang="ts">
 	import AngleRight from '@components/atoms/icons/AngleRight.svelte';
+	import ListIcon from '@components/atoms/icons/ListIcon.svelte';
 	import SidebarMenuList from '@components/organisms/sidebar/SidebarMenuList.svelte';
 	import type { Post } from '@typed/post';
 	import { onMount } from 'svelte';
@@ -44,14 +45,16 @@
 	});
 </script>
 
-<li>
+<li class="sortable-item">
 	<a
-		class="py-2.5 flex text-base rounded-lg px-4 hover:bg-gray-50 items-center justify-between mb-2 {childrenOfSubMenu
+		class="item py-2.5 flex relative text-base rounded-lg px-4 group hover:bg-gray-50 items-center justify-between mb-2 {childrenOfSubMenu
 			? 'bg-red-100'
 			: 'bg-green-100'}"
 		on:click={handleClick}
 		href="/post/{category}/{post.slug}"
 	>
+		<ListIcon classList="!size-4 absolute opacity-0 dragging-icon" />
+
 		<span>{post.title}</span>
 
 		{#if post.submenu}
@@ -82,6 +85,32 @@
 
 		.angle.show {
 			transform: rotate(90deg);
+		}
+
+		.sortable-item {
+			.item {
+				transition: padding-left var(--base-transision-duration)
+					var(--base-transitionn-timing-function);
+			}
+
+			.dragging-icon {
+				left: 0;
+				opacity: 0;
+				transition:
+					left var(--base-transision-duration) var(--base-transitionn-timing-function),
+					opacity var(--base-transision-duration) var(--base-transitionn-timing-function);
+			}
+
+			&.dragging {
+				.dragging-icon {
+					opacity: 1;
+					left: 1rem;
+				}
+
+				.item {
+					padding-left: calc(1rem + 24px);
+				}
+			}
 		}
 	</style>
 {/if}

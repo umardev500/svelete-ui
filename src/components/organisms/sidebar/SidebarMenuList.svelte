@@ -39,6 +39,14 @@
 		instance = Sortable.create(sortableEl, {
 			group: 'nested',
 			animation: 150,
+			onStart: (e) => {
+				const item = e.item;
+				item.classList.toggle('dragging');
+			},
+			onEnd: (e) => {
+				const item = e.item;
+				item.classList.toggle('dragging');
+			},
 			...options
 		});
 	});
