@@ -67,7 +67,7 @@
 	<a
 		on:mouseenter={toggleOpacityActions}
 		on:mouseleave={toggleOpacityActions}
-		class="item py-2.5 flex relative text-base rounded-lg px-4 hover:bg-gray-50 items-center justify-between mb-2 {childrenOfSubMenu
+		class="item py-2.5 flex z-10 relative text-base rounded-lg px-4 hover:bg-gray-50 items-center justify-between mb-2 {childrenOfSubMenu
 			? 'bg-red-100'
 			: 'bg-green-100'}"
 		on:click={handleClick}
@@ -106,10 +106,14 @@
 		.submenu-container {
 			overflow: hidden;
 			height: 0px;
-			transition: height var(--base-transision-duration) var(--base-transitionn-timing-function);
+			transform: translateY(-10px);
+			transition:
+				transform var(--base-transision-duration) var(--base-transitionn-timing-function),
+				height var(--base-transision-duration) var(--base-transitionn-timing-function);
 		}
 		.submenu-container.show {
 			height: var(--offset);
+			transform: translateY(0);
 		}
 
 		.angle {
