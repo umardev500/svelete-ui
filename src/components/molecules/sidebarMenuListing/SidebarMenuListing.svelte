@@ -47,6 +47,8 @@
 	});
 
 	const toggleOpacityActions = (e: Event) => {
+		if (!childrenOfSubMenu) return;
+
 		const target = e.target as HTMLElement;
 		const isAnchor = target.tagName === 'A';
 		let parentEl: HTMLElement | null = target;
@@ -94,7 +96,7 @@
 	{/if}
 
 	{#if post.submenu}
-		<div class="submenu-container show" bind:this={submenuContainerEl}>
+		<div class="submenu-container" bind:this={submenuContainerEl}>
 			<SidebarMenuList isSubmenu={true} posts={post.submenu} />
 		</div>
 	{/if}
