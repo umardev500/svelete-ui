@@ -5,6 +5,7 @@
 
 	export let post: Post;
 	export let category: string;
+	export let childrenOfSubMenu: boolean;
 
 	const handleClick = (e: Event) => {
 		if (!post.slug) e.preventDefault();
@@ -13,7 +14,9 @@
 
 <li>
 	<a
-		class="py-2.5 flex text-base rounded-lg px-4 hover:bg-gray-50 bg-red-100 items-center justify-between mb-2"
+		class="py-2.5 flex text-base rounded-lg px-4 hover:bg-gray-50 items-center justify-between mb-2 {childrenOfSubMenu
+			? 'bg-red-100'
+			: 'bg-green-100'}"
 		on:click={handleClick}
 		href="/post/{category}/{post.slug}"
 	>
@@ -26,7 +29,7 @@
 
 	{#if post.submenu}
 		<div class="submenu-container">
-			<SidebarMenuList posts={post.submenu} />
+			<SidebarMenuList isSubmenu={true} posts={post.submenu} />
 		</div>
 	{/if}
 </li>

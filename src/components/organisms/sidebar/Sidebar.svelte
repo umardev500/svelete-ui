@@ -107,7 +107,7 @@
 		<!-- End of Banner -->
 
 		<div class="px-4 py-6 text-nowrap menus">
-			<SidebarMenuList {posts} />
+			<SidebarMenuList isSubmenu={false} {posts} />
 		</div>
 	</div>
 	<div class="border-t absolute h-[4.5rem] bg-white bottom-0 right-0 left-0 flex add-menu-button">
