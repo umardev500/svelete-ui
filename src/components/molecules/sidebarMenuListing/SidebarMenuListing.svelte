@@ -1,6 +1,8 @@
 <script lang="ts">
 	import AngleRight from '@components/atoms/icons/AngleRight.svelte';
+	import DeleteIcon from '@components/atoms/icons/DeleteIcon.svelte';
 	import ListIcon from '@components/atoms/icons/ListIcon.svelte';
+	import PenIcon from '@components/atoms/icons/PenIcon.svelte';
 	import SidebarMenuList from '@components/organisms/sidebar/SidebarMenuList.svelte';
 	import type { Post } from '@typed/post';
 	import { onMount } from 'svelte';
@@ -43,11 +45,27 @@
 		submenuContainerEl.style.setProperty('--offset', `${submenuElRect.height}px`);
 		loaded = true;
 	});
+
+	const toggleOpacityActions = (e: Event) => {
+		const target = e.target as HTMLElement;
+		const isAnchor = target.tagName === 'A';
+		let parentEl: HTMLElement | null = target;
+		if (isAnchor) {
+			parentEl = target.closest('li');
+		}
+
+		if (parentEl === null) return;
+
+		const actionsEl = parentEl.querySelector('.actions');
+		actionsEl?.classList.toggle('opacity-0');
+	};
 </script>
 
-<li class="sortable-item">
+<li class="sortable-item relative">
 	<a
-		class="item py-2.5 flex relative text-base rounded-lg px-4 group hover:bg-gray-50 items-center justify-between mb-2 {childrenOfSubMenu
+		on:mouseenter={toggleOpacityActions}
+		on:mouseleave={toggleOpacityActions}
+		class="item py-2.5 flex relative text-base rounded-lg px-4 hover:bg-gray-50 items-center justify-between mb-2 {childrenOfSubMenu
 			? 'bg-red-100'
 			: 'bg-green-100'}"
 		on:click={handleClick}
@@ -61,9 +79,22 @@
 			<AngleRight classList="!size-5 angle {isOpen ? 'show' : ''}" />
 		{/if}
 	</a>
+	<!-- Hover action -->
+	{#if childrenOfSubMenu}
+		<div
+			class="absolute opacity-0 pointer-events-none group-hover:pointer-events-auto h-full flex items-center gap-2 px-2 right-0 actions"
+		>
+			<button>
+				<PenIcon classList="!size-5 fill-gray-900" />
+			</button>
+			<button>
+				<DeleteIcon classList="!size-5 fill-red-500" />
+			</button>
+		</div>
+	{/if}
 
 	{#if post.submenu}
-		<div class="submenu-container" bind:this={submenuContainerEl}>
+		<div class="submenu-container show" bind:this={submenuContainerEl}>
 			<SidebarMenuList isSubmenu={true} posts={post.submenu} />
 		</div>
 	{/if}
@@ -91,6 +122,11 @@
 			.item {
 				transition: padding-left var(--base-transision-duration)
 					var(--base-transitionn-timing-function);
+			}
+
+			.actions {
+				top: 50%;
+				transform: translateY(-50%);
 			}
 
 			.dragging-icon {
