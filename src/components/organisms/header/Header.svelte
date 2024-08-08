@@ -1,5 +1,5 @@
 <script lang="ts">
-	import RightMenu from '@components/molecules/header/RightMenu.svelte';
+	import RightMenuList from '@components/molecules/header/RightMenuList.svelte';
 	import HeaderMenuLeftList from '@components/organisms/header/HeaderMenuLeftList.svelte';
 	import type { CategoryMenu } from '@typed/category';
 	import { onDestroy } from 'svelte';
@@ -22,7 +22,7 @@
 		<HeaderMenuLeftList {items} />
 		<!-- End of left menus -->
 		<!-- Right Menus -->
-		<RightMenu />
+		<RightMenuList />
 		<!-- End of Right Menus -->
 	</nav>
 </header>
