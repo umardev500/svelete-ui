@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import PlusIcon from '@components/atoms/icons/PlusIcon.svelte';
 	import HeaderLeftMenuListing from '@components/molecules/header/HeaderLeftMenuListing.svelte';
 	import type { CategoryMenu } from '@typed/category';
 	import Sortable from 'sortablejs';
@@ -69,6 +70,11 @@
 	{#each items as item (item.title)}
 		<HeaderLeftMenuListing {item} {prefix} {currentRouteId} />
 	{/each}
+
+	<!-- Extend the left menu -->
+	<button>
+		<PlusIcon classList="text-green-600" />
+	</button>
 </ul>
 
 {#if isLoaded}
