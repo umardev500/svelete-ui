@@ -1,6 +1,6 @@
 <script lang="ts">
-	import RightMenuList from '@components/molecules/header/RightMenuList.svelte';
 	import HeaderMenuLeftList from '@components/organisms/header/HeaderMenuLeftList.svelte';
+	import RightMenuList from '@components/organisms/header/RightMenuList.svelte';
 	import type { CategoryMenu } from '@typed/category';
 	import { onDestroy } from 'svelte';
 	import { leftMenuStore } from '../../../stores/leftMenu';
