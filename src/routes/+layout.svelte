@@ -37,8 +37,8 @@
 		transition: background-color var(--margin-transition-duration) var(--margin-timing-function);
 
 		&.show {
-			background-color: rgba(0, 0, 0, 0.4);
 			pointer-events: all;
+			background-color: rgba(0, 0, 0, 0.4);
 		}
 
 		/* Middle */
@@ -51,7 +51,7 @@
 			pointer-events: none;
 
 			&.show {
-				pointer-events: all;
+				pointer-events: none;
 				background-color: transparent;
 			}
 		}
@@ -63,10 +63,6 @@
 		/* XXLarge */
 		@media screen and (min-width: 1536px) {
 		}
-	}
-
-	.backdrop.show {
-		pointer-events: all;
 	}
 
 	main.main-content-wrapper {
