@@ -47,9 +47,12 @@
 	});
 
 	const toggleOpacityActions = (e: Event) => {
-		if (!childrenOfSubMenu) return;
-
 		const target = e.target as HTMLElement;
+		const parentOfMenu = target.closest('ul');
+		const parentOfMenuIsSubmenu = parentOfMenu?.classList.contains('border-l'); // border-l indicate that is a submenu
+
+		if (!parentOfMenuIsSubmenu) return;
+
 		const isAnchor = target.tagName === 'A';
 		let parentEl: HTMLElement | null = target;
 		if (isAnchor) {
@@ -82,18 +85,16 @@
 		{/if}
 	</a>
 	<!-- Hover action -->
-	{#if childrenOfSubMenu}
-		<div
-			class="absolute z-10 opacity-0 pointer-events-none group-hover:pointer-events-auto h-full flex items-center gap-2 px-2 right-0 actions"
-		>
-			<button>
-				<PenIcon classList="!size-5 fill-gray-900" />
-			</button>
-			<button>
-				<DeleteIcon classList="!size-5 fill-red-500" />
-			</button>
-		</div>
-	{/if}
+	<div
+		class="absolute z-10 opacity-0 pointer-events-none group-hover:pointer-events-auto h-full flex items-center gap-2 px-2 right-0 actions"
+	>
+		<button>
+			<PenIcon classList="!size-5 fill-gray-900" />
+		</button>
+		<button>
+			<DeleteIcon classList="!size-5 fill-red-500" />
+		</button>
+	</div>
 
 	{#if post.submenu}
 		<div class="submenu-container" bind:this={submenuContainerEl}>
