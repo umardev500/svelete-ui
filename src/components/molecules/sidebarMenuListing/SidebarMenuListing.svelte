@@ -68,8 +68,8 @@
 		on:mouseenter={toggleOpacityActions}
 		on:mouseleave={toggleOpacityActions}
 		class="item py-2.5 flex z-10 relative text-base rounded-lg px-4 hover:bg-gray-50 items-center justify-between {childrenOfSubMenu
-			? 'bg-red-100'
-			: 'bg-green-100'}"
+			? 'pl-6'
+			: ''}"
 		on:click={handleClick}
 		href="/post/{category}/{post.slug}"
 	>

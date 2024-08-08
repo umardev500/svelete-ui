@@ -35,30 +35,6 @@
 				}
 			};
 		}
-		// if (!isSubmenu) {
-		// 	options = {
-		// 		onMove: (e) => {
-		// 			const targetEl = e.target as HTMLElement;
-		// 			const children = targetEl.children;
-		// 			let sortableChildren: Element[] = [];
-
-		// 			for (let i = 0; i < children.length; i++) {
-		// 				const isSortable = children[i].tagName === 'LI';
-		// 				if (!isSortable) {
-		// 					continue;
-		// 				}
-
-		// 				sortableChildren.push(children[i]);
-		// 			}
-		// 			const totalChildren = sortableChildren.length;
-
-		// 			if (totalChildren < 2 && targetEl !== e.to) {
-		// 				console.log('falseing');
-		// 				e.preventDefault();
-		// 			}
-		// 		}
-		// 	};
-		// }
 
 		instance = Sortable.create(sortableEl, {
 			group: 'nested',
@@ -80,7 +56,7 @@
 	});
 </script>
 
-<ul bind:this={sortableEl} class="menu-list py-1">
+<ul bind:this={sortableEl} class="menu-list py-1 {isSubmenu ? 'border-l' : ''}">
 	{#each posts as post}
 		<SidebarMenuListing childrenOfSubMenu={isSubmenu} category={parameters.category} {post} />
 	{/each}
