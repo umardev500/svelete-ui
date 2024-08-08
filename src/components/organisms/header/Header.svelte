@@ -1,13 +1,25 @@
 <script lang="ts">
-	import LeftMenu from '@components/molecules/header/LeftMenu.svelte';
 	import RightMenu from '@components/molecules/header/RightMenu.svelte';
+	import HeaderMenuLeftList from '@components/organisms/header/HeaderMenuLeftList.svelte';
+	import type { CategoryMenu } from '@typed/category';
+	import { onDestroy } from 'svelte';
+	import { leftMenuStore } from '../../../stores/leftMenu';
 	export let sidebarOpen: boolean;
+
+	let items: CategoryMenu[] = [];
+	const unsubscribe = leftMenuStore.subscribe((value) => {
+		items = value;
+	});
+
+	onDestroy(() => {
+		unsubscribe();
+	});
 </script>
 
 <header style="--sidebar-width: {sidebarOpen ? '22.125rem' : '4.5rem'}">
 	<nav class="px-4 h-16 border-b flex items-center justify-between">
 		<!-- Left menus -->
-		<LeftMenu />
+		<HeaderMenuLeftList {items} />
 		<!-- End of left menus -->
 		<!-- Right Menus -->
 		<RightMenu />
