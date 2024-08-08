@@ -1,4 +1,5 @@
 <script lang="ts">
+	import ListIcon from '@components/atoms/icons/ListIcon.svelte';
 	import HeaderMenuLeftList from '@components/organisms/header/HeaderMenuLeftList.svelte';
 	import HeaderRightMenuList from '@components/organisms/header/HeaderRightMenuList.svelte';
 	import type { CategoryMenu } from '@typed/category';
@@ -20,7 +21,13 @@
 	class={sidebarOpen ? 'show' : ''}
 	style="--sidebar-width: {sidebarOpen ? '22.125rem' : '4.5rem'}"
 >
-	<nav class="px-4 h-16 border-b">
+	<nav class="px-4 h-16 border-b relative">
+		<div class="h-full flex items-center justify-between mobile-menu">
+			<div class="flex items-center gap-2">
+				<ListIcon />
+				<span class="font-bold text-base">API Saga</span>
+			</div>
+		</div>
 		<div class="h-full flex items-center justify-between desktop-menu">
 			<!-- Left menus -->
 			<HeaderMenuLeftList {items} />
@@ -39,7 +46,12 @@
 		transition: margin-left var(--margin-transition-duration) var(--margin-timing-function);
 
 		.desktop-menu {
-			transform: translateY(-4rem);
+			transform: translateY(-8rem);
+			transition: transform var(--margin-transition-duration) var(--margin-timing-function);
+		}
+
+		.mobile-menu {
+			transform: translateY(0);
 			transition: transform var(--margin-transition-duration) var(--margin-timing-function);
 		}
 
@@ -47,7 +59,11 @@
 			margin-left: 4.5rem;
 
 			.desktop-menu {
-				transform: translateY(0);
+				transform: translateY(-4rem);
+			}
+
+			.mobile-menu {
+				transform: translateY(-4rem);
 			}
 
 			&.show {

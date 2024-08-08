@@ -67,7 +67,7 @@
 
 	main.main-content-wrapper {
 		transition: margin-left var(--margin-transition-duration) var(--margin-timing-function);
-		margin-left: 4.5rem;
+		margin-left: 0rem;
 
 		/* Middle */
 		@media screen and (min-width: 768px) {
