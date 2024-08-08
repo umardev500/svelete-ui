@@ -12,8 +12,11 @@
 	export let posts: Post[] = [];
 	export let isSubmenu: boolean;
 
+	let isLoaded: boolean = false;
+
 	let instance: Sortable;
 	onMount(() => {
+		let currentMoveRelatedEl: HTMLElement | null = null;
 		let options: Sortable.Options = {};
 		if (isSubmenu) {
 			options = {
@@ -65,10 +68,46 @@
 			},
 			onEnd: (e) => {
 				const item = e.item;
-				item.classList.toggle('dragging');
+
+				item.classList.remove('dragging');
+				const target = e.target;
+				const listActiveWithBorder = target.querySelectorAll(
+					'li.will-insert-after, li.will-insert-before'
+				)[0];
+
+				if (listActiveWithBorder) {
+					listActiveWithBorder.classList.remove('will-insert-after');
+					listActiveWithBorder.classList.remove('will-insert-before');
+				}
+			},
+			onMove: (e) => {
+				const willInsertAfter = e.willInsertAfter;
+				const relatedEl = e.related as HTMLElement;
+
+				// Remove class 'will-insert-after' and 'will-insert-before'
+				// from the 'currentMoveRelatedEl'
+				if (currentMoveRelatedEl) {
+					currentMoveRelatedEl.classList.remove('will-insert-after');
+					currentMoveRelatedEl.classList.remove('will-insert-before');
+				}
+
+				// Add class 'will-insert-after' and 'will-insert-before'
+				// depending on the 'willInsertAfter'
+				if (willInsertAfter) {
+					relatedEl.classList.add('will-insert-after');
+					relatedEl.classList.remove('will-insert-before');
+				} else {
+					relatedEl.classList.remove('will-insert-after');
+					relatedEl.classList.add('will-insert-before');
+				}
+
+				// Set the 'currentMoveRelatedEl' to the 'relatedEl'
+				currentMoveRelatedEl = relatedEl;
 			},
 			...options
 		});
+
+		isLoaded = true;
 	});
 
 	onDestroy(() => {
@@ -76,8 +115,45 @@
 	});
 </script>
 
-<ul bind:this={sortableEl} class="menu-list py-1 {isSubmenu ? 'border-l' : ''}">
+<ul bind:this={sortableEl} class="menu-list sidebar-menu-left py-1 {isSubmenu ? 'border-l' : ''}">
 	{#each posts as post}
 		<SidebarMenuListing childrenOfSubMenu={isSubmenu} category={parameters.category} {post} />
 	{/each}
 </ul>
+
+{#if isLoaded}
+	<style lang="scss">
+		.sidebar-menu-left {
+			.will-insert-after {
+				position: relative;
+			}
+
+			.will-insert-after::after {
+				content: '';
+				position: absolute;
+				height: 2px;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				z-index: 1050;
+				border-radius: 2px;
+				background-color: #d1d5db;
+			}
+
+			.will-insert-before {
+				position: relative;
+			}
+			.will-insert-before::before {
+				content: '';
+				position: absolute;
+				height: 2px;
+				top: 0;
+				left: 0;
+				right: 0;
+				z-index: 1050;
+				border-radius: 2px;
+				background-color: #d1d5db;
+			}
+		}
+	</style>
+{/if}
