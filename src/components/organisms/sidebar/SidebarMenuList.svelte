@@ -36,6 +36,18 @@
 			};
 		}
 
+		if (!isSubmenu) {
+			options = {
+				...options,
+				onAdd: (e) => {
+					// Handle if children of submenu is added to the root
+					const item = e.item;
+					const itemAnchor = item.querySelector('a');
+					itemAnchor?.classList.remove('pl-6');
+				}
+			};
+		}
+
 		instance = Sortable.create(sortableEl, {
 			group: 'nested',
 			animation: 150,
