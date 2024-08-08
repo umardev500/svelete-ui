@@ -17,15 +17,77 @@
 </script>
 
 <Sidebar {sidebarOpen} on:toggle={toggleSidebar} />
+<div class="backdrop {sidebarOpen ? 'show' : ''}"></div>
 <Header {sidebarOpen} />
-<main style="--sidebar-width: {sidebarOpen ? '22.125rem' : '4.5rem'}">
+<main class="main-content-wrapper" style="--sidebar-width: {sidebarOpen ? '22.125rem' : '4.5rem'}">
 	<slot></slot>
 </main>
 <Footer />
 
-<style>
-	main {
-		margin-left: var(--sidebar-width);
+<style lang="scss">
+	.backdrop {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100vw;
+		height: 100vh;
+		background-color: rgba(0, 0, 0, 0);
+		pointer-events: none;
+		z-index: 10;
+		transition: background-color var(--margin-transition-duration) var(--margin-timing-function);
+
+		&.show {
+			background-color: rgba(0, 0, 0, 0.4);
+			pointer-events: all;
+		}
+
+		/* Middle */
+		@media screen and (min-width: 768px) {
+		}
+
+		/* Large */
+		@media screen and (min-width: 1024px) {
+			background-color: transparent;
+			pointer-events: none;
+
+			&.show {
+				pointer-events: all;
+				background-color: transparent;
+			}
+		}
+
+		/* XLarge */
+		@media screen and (min-width: 1280px) {
+		}
+
+		/* XXLarge */
+		@media screen and (min-width: 1536px) {
+		}
+	}
+
+	.backdrop.show {
+		pointer-events: all;
+	}
+
+	main.main-content-wrapper {
 		transition: margin-left var(--margin-transition-duration) var(--margin-timing-function);
+		margin-left: 4.5rem;
+
+		/* Middle */
+		@media screen and (min-width: 768px) {
+		}
+
+		/* Large */
+		@media screen and (min-width: 1024px) {
+			margin-left: var(--sidebar-width);
+		}
+
+		/* XLarge */
+		@media screen and (min-width: 1280px) {
+		}
+
+		/* XXLarge */
+		@media screen and (min-width: 1536px) {
+		}
 	}
 </style>

@@ -29,7 +29,9 @@
 	// Fetch Menus data from server
 </script>
 
-<aside class="sidebar {sidebarOpen ? 'show' : ''} bottom-0 top-0 left-0 pb-6 border-r">
+<aside
+	class="sidebar {sidebarOpen ? 'show' : ''} bottom-0 top-0 left-0 pb-6 border-r bg-white z-20"
+>
 	<div class="flex items-center border-b h-16 px-4 heading relative">
 		<div class="flex items-center gap-2 text-nowrap text w-full">
 			<span class="text-gray-900">
