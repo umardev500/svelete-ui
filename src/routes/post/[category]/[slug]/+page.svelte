@@ -7,11 +7,11 @@
 	<!-- Breadcrumb -->
 	<ol class="flex items-start gap-2.5 text-gray-600 mt-4">
 		<li>
-			<a href="/post/slug">Getting Started</a>
+			<a href="/post/{data.category}">{data.parent}</a>
 		</li>
 		<li>/</li>
 		<li>
-			<a class="text-black font-medium" href="/post/slug">Getting Started</a>
+			<a class="text-black font-medium" href="/post/{data.category}/{data.slug}">{data.title}</a>
 		</li>
 	</ol>
 	<!-- End of Breadcrumb -->
