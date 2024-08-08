@@ -34,6 +34,10 @@
 {#if isLoaded}
 	<style lang="scss">
 		.on-this-page {
+			@media screen and (min-width: 1024px) {
+				display: none;
+			}
+
 			.anggle-icon {
 				transition: transform var(--margin-transition-duration) var(--margin-timing-function);
 			}
