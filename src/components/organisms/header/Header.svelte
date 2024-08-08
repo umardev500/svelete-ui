@@ -16,7 +16,10 @@
 	});
 </script>
 
-<header style="--sidebar-width: {sidebarOpen ? '22.125rem' : '4.5rem'}">
+<header
+	class={sidebarOpen ? 'show' : ''}
+	style="--sidebar-width: {sidebarOpen ? '22.125rem' : '4.5rem'}"
+>
 	<nav class="px-4 h-16 border-b flex items-center justify-between">
 		<!-- Left menus -->
 		<HeaderMenuLeftList {items} />
@@ -27,10 +30,16 @@
 	</nav>
 </header>
 
-<style>
+<style lang="scss">
 	header {
 		font-family: 'Roboto';
-		margin-left: var(--sidebar-width);
+		margin-left: 4.5rem;
 		transition: margin-left var(--margin-transition-duration) var(--margin-timing-function);
+
+		@media screen and (min-width: 1024px) {
+			&.show {
+				margin-left: 22.125rem;
+			}
+		}
 	}
 </style>
