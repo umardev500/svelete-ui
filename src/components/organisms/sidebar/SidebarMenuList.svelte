@@ -28,6 +28,12 @@
 				onAdd: (e) => {
 					const targetEl = e.target;
 					const targetRect = targetEl.getBoundingClientRect();
+					const itemEl = e.item;
+					const itemAnchorEl = itemEl.querySelector('a');
+					const itemAnchorElContainPL = itemAnchorEl?.classList.contains('pl-6');
+					if (!itemAnchorElContainPL) {
+						itemAnchorEl?.classList.add('pl-6');
+					}
 
 					const containerEl = targetEl.parentElement;
 
