@@ -1,6 +1,6 @@
 <script lang="ts">
 	import HeaderMenuLeftList from '@components/organisms/header/HeaderMenuLeftList.svelte';
-	import RightMenuList from '@components/organisms/header/RightMenuList.svelte';
+	import HeaderRightMenuList from '@components/organisms/header/HeaderRightMenuList.svelte';
 	import type { CategoryMenu } from '@typed/category';
 	import { onDestroy } from 'svelte';
 	import { leftMenuStore } from '../../../stores/leftMenu';
@@ -22,7 +22,7 @@
 		<HeaderMenuLeftList {items} />
 		<!-- End of left menus -->
 		<!-- Right Menus -->
-		<RightMenuList />
+		<HeaderRightMenuList />
 		<!-- End of Right Menus -->
 	</nav>
 </header>
