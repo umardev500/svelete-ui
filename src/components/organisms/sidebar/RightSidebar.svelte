@@ -1,4 +1,4 @@
-<aside class="border-l h-full bg-white px-4 py-4 fixed right-0 w-[250px]">
+<aside class="post-right-sidebar border-l h-full bg-white px-4 py-4 fixed right-0 w-[250px]">
 	<ul>
 		<li>
 			<a class="text-black flex py-2 text-base font-medium" href="/post/requirements"
@@ -29,4 +29,13 @@
 	</ul>
 </aside>
 
-<style></style>
+<style lang="scss">
+	.post-right-sidebar {
+		right: -100%;
+		transition: right var(--margin-transition-duration) var(--margin-timing-function);
+
+		@media screen and (min-width: 1024px) {
+			right: 0;
+		}
+	}
+</style>
