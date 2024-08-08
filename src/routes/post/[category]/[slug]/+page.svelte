@@ -1,20 +1,24 @@
 <script lang="ts">
+	import Breadcrumbs from '@components/molecules/Breadcrumbs.svelte';
+	import PostInfo from '@components/molecules/PostInfo.svelte';
 	import RightSidebar from '@components/organisms/sidebar/RightSidebar.svelte';
 	export let data;
 </script>
 
 <main class="px-6 flex justify-between">
-	<!-- Breadcrumb -->
-	<ol class="flex items-start gap-2.5 text-gray-600 mt-4">
-		<li>
-			<a href="/post/{data.category}">{data.parent}</a>
-		</li>
-		<li>/</li>
-		<li>
-			<a class="text-black font-medium" href="/post/{data.category}/{data.slug}">{data.title}</a>
-		</li>
-	</ol>
-	<!-- End of Breadcrumb -->
+	<div>
+		<!-- Breadcrumb -->
+		<div class="mt-6">
+			<Breadcrumbs {data} />
+		</div>
+		<!-- End of Breadcrumb -->
+
+		<!-- Post Info -->
+		<div class="mt-6">
+			<PostInfo />
+		</div>
+		<!-- End of Post Info -->
+	</div>
 
 	<!-- Content -->
 	<section></section>

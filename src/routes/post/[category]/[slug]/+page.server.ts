@@ -1,10 +1,4 @@
-type ReadPost = {
-	category: string;
-	parent: string;
-	content: string;
-	title: string;
-	slug: string;
-};
+import type { ReadPost } from '@typed/post.js';
 
 export function load({ params }) {
 	// @Todo
