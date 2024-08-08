@@ -7,8 +7,23 @@
 	import PlusIcon from '@components/atoms/icons/PlusIcon.svelte';
 	import SunIcon from '@components/atoms/icons/SunIcon.svelte';
 	import DropdownMenu from '@components/molecules/dropdown/DropdownMenu.svelte';
+	import Sortable from 'sortablejs';
+	import { onDestroy, onMount } from 'svelte';
 
 	let versions = ['1.0.0', '2.0.0', '3.0.0', '4.0.0', '5.0.0'];
+	let versionSortableMenu: HTMLElement;
+
+	let sortableInstance: Sortable;
+	onMount(() => {
+		sortableInstance = Sortable.create(versionSortableMenu, {
+			animation: 150,
+			filter: '.not-sortable'
+		});
+	});
+
+	onDestroy(() => {
+		sortableInstance?.destroy();
+	});
 </script>
 
 <ul class="flex items-center gap-4">
@@ -45,12 +60,12 @@
 		</DropdownMenu>
 	</li>
 	<li class="relative">
-		<DropdownMenu>
+		<DropdownMenu bind:menuElement={versionSortableMenu}>
 			<!-- Trigger button -->
 			<svelte:fragment slot="trigger" let:toggleDropdown>
 				<button
 					on:click={toggleDropdown}
-					class="text-black text-base font-medium flex items-center gap-1"
+					class="text-black text-base font-medium flex items-center gap-1 not-sortable"
 				>
 					<span>1.0.0 </span>
 					<AngleDownIcon classList="!size-5" />
@@ -58,7 +73,7 @@
 			</svelte:fragment>
 
 			<svelte:fragment slot="menu">
-				<div class="px-4 text-base pb-1">Versions</div>
+				<div class="px-4 text-base pb-1 not-sortable">Versions</div>
 				{#each versions as version}
 					<div
 						class="flex mb-2 items-center group hover:bg-gray-50 rounded-md px-4 py-1 cursor-pointer"
@@ -77,7 +92,7 @@
 						</div>
 					</div>
 				{/each}
-				<div class="flex justify-center">
+				<div class="flex justify-center not-sortable">
 					<button>
 						<PlusIcon classList="fill-green-500 size-5" />
 					</button>

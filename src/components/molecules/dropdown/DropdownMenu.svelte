@@ -3,7 +3,8 @@
 
 	const dispatch = createEventDispatcher();
 	let isOpen = false;
-	let dropdownElement: HTMLElement;
+	export let menuElement: HTMLElement | null = null;
+	let dropdownElement: HTMLElement | null = null;
 
 	const handleOutsideClick = (event: MouseEvent) => {
 		if (dropdownElement && !dropdownElement.contains(event.target as Node)) {
@@ -27,6 +28,7 @@
 
 	<!-- Slot for trigger button content -->
 	<div
+		bind:this={menuElement}
 		class="flex dropdown-menu {isOpen
 			? 'show'
 			: ''} absolute flex-col right-0 bg-white z-50 rounded-lg px-2 py-4 min-w-[150px]"
