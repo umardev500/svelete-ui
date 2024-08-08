@@ -18,7 +18,7 @@
 </script>
 
 <header
-	class={sidebarOpen ? 'show' : ''}
+	class="{sidebarOpen ? 'show' : ''} overflow-hidden"
 	style="--sidebar-width: {sidebarOpen ? '22.125rem' : '4.5rem'}"
 >
 	<nav class="px-4 h-16 border-b relative">
