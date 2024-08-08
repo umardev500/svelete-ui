@@ -76,7 +76,14 @@
 
 	.sidebar {
 		width: 4.5rem;
-		transition: width var(--margin-transition-duration) var(--margin-timing-function);
+		left: -22.125rem;
+		transition:
+			left var(--margin-transition-duration) var(--margin-timing-function),
+			width var(--margin-transition-duration) var(--margin-timing-function);
+
+		@media screen and (min-width: 1024px) {
+			left: 0;
+		}
 
 		.banner {
 			opacity: 0;

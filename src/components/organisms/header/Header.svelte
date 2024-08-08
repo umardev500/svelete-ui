@@ -33,10 +33,12 @@
 <style lang="scss">
 	header {
 		font-family: 'Roboto';
-		margin-left: 4.5rem;
+		margin-left: 0rem;
 		transition: margin-left var(--margin-transition-duration) var(--margin-timing-function);
 
 		@media screen and (min-width: 1024px) {
+			margin-left: 4.5rem;
+
 			&.show {
 				margin-left: 22.125rem;
 			}
