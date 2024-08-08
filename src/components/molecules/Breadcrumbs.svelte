@@ -6,10 +6,12 @@
 
 <ol class="flex items-start gap-2.5 text-gray-600">
 	<li>
-		<a href="/post/{data.category}">{data.parent}</a>
+		<a href="/post/{data.category}" class="text-nowrap">{data.parent}</a>
 	</li>
 	<li>/</li>
 	<li>
-		<a class="text-black font-medium" href="/post/{data.category}/{data.slug}">{data.title}</a>
+		<a class="text-black font-medium text-nowrap" href="/post/{data.category}/{data.slug}"
+			>{data.title}</a
+		>
 	</li>
 </ol>

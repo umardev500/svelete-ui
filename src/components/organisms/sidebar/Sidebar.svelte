@@ -4,7 +4,6 @@
 	import ListIcon from '@components/atoms/icons/ListIcon.svelte';
 	import SidebarMenuList from '@components/organisms/sidebar/SidebarMenuList.svelte';
 	import type { Post } from '@typed/post';
-	import type { SidebarMenuType } from '@typed/sidebarMenu';
 	import 'simplebar';
 	import 'simplebar/dist/simplebar.min.css';
 	import { createEventDispatcher, onDestroy } from 'svelte';
@@ -16,59 +15,6 @@
 	const toggle = () => {
 		dispatch('toggle');
 	};
-
-	let menus: SidebarMenuType[] = [
-		{
-			title: 'Get Started',
-			submenu: [
-				{
-					title: 'Installation',
-					slug: `/post/get-started/installation`
-				},
-				{
-					title: 'Configuration',
-					slug: `/post/get-started/configuration`
-				},
-				{
-					title: 'Usage',
-					slug: `/post/get-started/usage`
-				},
-				{
-					title: 'Playground',
-					slug: `/post/get-started/playground`
-				}
-			]
-		},
-		{
-			title: 'Guides',
-			submenu: [
-				{
-					title: 'Beginner Guide',
-					slug: `/post/guides/beginner`
-				},
-				{
-					title: 'Intermediate Tips',
-					slug: `/post/guides/intermediate`
-				},
-				{
-					title: 'Advanced Techniques',
-					slug: `/post/guides/advanced`
-				},
-				{
-					title: 'Troubleshooting',
-					slug: `/post/guides/troubleshooting`
-				}
-			]
-		},
-		{
-			title: 'API Reference',
-			slug: `/post/api-reference`
-		},
-		{
-			title: 'Community Hub',
-			slug: `/post/community-hub`
-		}
-	];
 
 	let posts: Post[] = [];
 	const unsubscribe = postStore.subscribe((data) => {
