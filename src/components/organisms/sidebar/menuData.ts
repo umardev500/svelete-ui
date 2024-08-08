@@ -26,5 +26,27 @@ export const posts: Post[] = [
 				slug: 'faq'
 			}
 		]
+	},
+	{
+		title: 'Guide',
+		slug: undefined,
+		submenu: [
+			{
+				title: 'Routing',
+				slug: 'routing'
+			},
+			{
+				title: 'Navigation',
+				slug: 'navigation'
+			},
+			{
+				title: 'State Management',
+				slug: 'state-management'
+			}
+		]
+	},
+	{
+		title: 'Contributing',
+		slug: 'contributing'
 	}
 ];
