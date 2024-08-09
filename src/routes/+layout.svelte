@@ -1,6 +1,8 @@
 <script lang="ts">
+	import ModalHeader from '@components/molecules/modal/ModalHeader.svelte';
 	import Footer from '@components/organisms/footer/Footer.svelte';
 	import Header from '@components/organisms/header/Header.svelte';
+	import ModalHost from '@components/organisms/modal/ModalHost.svelte';
 	import Sidebar from '@components/organisms/sidebar/Sidebar.svelte';
 	import { leftMenuStore } from '../stores/leftMenu';
 	import '../styles/app.scss';
@@ -15,6 +17,14 @@
 	// Initialize left menu of header
 	leftMenuStore.set(data.categories);
 </script>
+
+<ModalHost>
+	<svelte:fragment slot="inner">
+		<div class="bg-white rounded-lg overflow-hidden w-[500px] mx-auto">
+			<ModalHeader />
+		</div>
+	</svelte:fragment>
+</ModalHost>
 
 <Sidebar {sidebarOpen} on:toggle={toggleSidebar} />
 <!-- svelte-ignore a11y-click-events-have-key-events -->
