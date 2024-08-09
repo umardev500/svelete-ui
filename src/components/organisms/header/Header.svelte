@@ -5,7 +5,7 @@
 	import HeaderMenuLeftList from '@components/organisms/header/HeaderMenuLeftList.svelte';
 	import HeaderRightMenuList from '@components/organisms/header/HeaderRightMenuList.svelte';
 	import type { CategoryMenu } from '@typed/category';
-	import { onDestroy } from 'svelte';
+	import { createEventDispatcher, onDestroy } from 'svelte';
 	import { leftMenuStore } from '../../../stores/leftMenu';
 	export let sidebarOpen: boolean;
 
@@ -17,6 +17,11 @@
 	onDestroy(() => {
 		unsubscribe();
 	});
+
+	const dispatch = createEventDispatcher();
+	const toggle = () => {
+		dispatch('toggle');
+	};
 </script>
 
 <header
@@ -26,7 +31,9 @@
 	<nav class="px-4 h-16 border-b relative">
 		<div class="h-full flex items-center justify-between lg:hidden w-full">
 			<div class="flex items-center gap-2">
-				<ListIcon />
+				<button on:click={toggle}>
+					<ListIcon />
+				</button>
 				<span class="font-bold text-base">API Saga</span>
 			</div>
 

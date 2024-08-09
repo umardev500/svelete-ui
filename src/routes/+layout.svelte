@@ -18,7 +18,7 @@
 
 <Sidebar {sidebarOpen} on:toggle={toggleSidebar} />
 <div class="backdrop {sidebarOpen ? 'show' : ''}"></div>
-<Header {sidebarOpen} />
+<Header {sidebarOpen} on:toggle={toggleSidebar} />
 <main class="main-content-wrapper" style="--sidebar-width: {sidebarOpen ? '22.125rem' : '4.5rem'}">
 	<slot></slot>
 </main>
