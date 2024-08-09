@@ -25,11 +25,11 @@
 </script>
 
 <header
-	class="{sidebarOpen ? 'show' : ''} overflow-hidden"
+	class={sidebarOpen ? 'show' : ''}
 	style="--sidebar-width: {sidebarOpen ? '22.125rem' : '4.5rem'}"
 >
 	<nav class="px-4 h-16 border-b relative">
-		<div class="h-full flex items-center justify-between lg:hidden w-full">
+		<div class="h-full flex items-center justify-between lg:hidden w-full px-2">
 			<div class="flex items-center gap-2">
 				<button on:click={toggle}>
 					<ListIcon />
@@ -46,7 +46,7 @@
 				</button>
 			</div>
 		</div>
-		<div class="h-full flex items-center justify-between">
+		<div class="h-full items-center justify-between hidden lg:flex">
 			<!-- Left menus -->
 			<HeaderMenuLeftList {items} />
 			<!-- End of left menus -->

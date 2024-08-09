@@ -51,7 +51,7 @@
 		</button>
 		<!-- End of Top Desktop -->
 
-		<div class="h-full flex items-center justify-between mobile-menu lg:hidden w-full">
+		<div class="h-full px-2 flex items-center justify-between mobile-menu lg:hidden w-full">
 			<div class="flex items-center gap-2">
 				<button on:click={toggle}>
 					<ListIcon />
