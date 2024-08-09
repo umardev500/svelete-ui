@@ -4,6 +4,7 @@
 	import DeleteIcon from '@components/atoms/icons/DeleteIcon.svelte';
 	import ListIcon from '@components/atoms/icons/ListIcon.svelte';
 	import DropdownMenu from '@components/molecules/dropdown/DropdownMenu.svelte';
+	import DeleteConfirm from '@components/organisms/modals/DeleteConfirm.svelte';
 	import type { CategoryMenu } from '@typed/category';
 
 	export let item: CategoryMenu;
@@ -33,10 +34,20 @@
 				<span>Edit</span>
 				<EditIcon classList="!size-5" />
 			</button>
-			<button class="w-full flex text-left px-4 py-2 justify-between hover:bg-gray-50 rounded-lg">
-				<span>Delete</span>
-				<DeleteIcon classList="!size-5 fill-red-500" />
-			</button>
+			<DeleteConfirm
+				text="Are you sure you want to delete this page?"
+				subText="This action cannot be undone."
+			>
+				<svelte:fragment slot="trigger" let:toggle>
+					<button
+						on:click={toggle}
+						class="w-full flex text-left px-4 py-2 justify-between hover:bg-gray-50 rounded-lg"
+					>
+						<span>Delete</span>
+						<DeleteIcon classList="!size-5 fill-red-500" />
+					</button>
+				</svelte:fragment>
+			</DeleteConfirm>
 		</svelte:fragment>
 	</DropdownMenu>
 </li>
