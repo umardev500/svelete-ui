@@ -17,7 +17,9 @@
 </script>
 
 <Sidebar {sidebarOpen} on:toggle={toggleSidebar} />
-<div class="backdrop {sidebarOpen ? 'show' : ''}"></div>
+<!-- svelte-ignore a11y-click-events-have-key-events -->
+<!-- svelte-ignore a11y-no-static-element-interactions -->
+<div on:click={toggleSidebar} class="backdrop {sidebarOpen ? 'show' : ''}"></div>
 <Header {sidebarOpen} on:toggle={toggleSidebar} />
 <main class="main-content-wrapper" style="--sidebar-width: {sidebarOpen ? '22.125rem' : '4.5rem'}">
 	<slot></slot>
