@@ -53,7 +53,9 @@
 
 		<div class="h-full flex items-center justify-between mobile-menu lg:hidden w-full">
 			<div class="flex items-center gap-2">
-				<ListIcon />
+				<button on:click={toggle}>
+					<ListIcon />
+				</button>
 				<span class="font-bold text-base">API Saga</span>
 			</div>
 
