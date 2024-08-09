@@ -1,7 +1,6 @@
 <script lang="ts">
 	import Footer from '@components/organisms/footer/Footer.svelte';
 	import Header from '@components/organisms/header/Header.svelte';
-	import DeleteConfirm from '@components/organisms/modals/DeleteConfirm.svelte';
 	import Sidebar from '@components/organisms/sidebar/Sidebar.svelte';
 	import { leftMenuStore } from '../stores/leftMenu';
 	import '../styles/app.scss';
@@ -17,10 +16,6 @@
 	leftMenuStore.set(data.categories);
 </script>
 
-<DeleteConfirm
-	text="Are you sure you want to delete this page?"
-	subText="This action cannot be undone."
-/>
 <Sidebar {sidebarOpen} on:toggle={toggleSidebar} />
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-no-static-element-interactions -->

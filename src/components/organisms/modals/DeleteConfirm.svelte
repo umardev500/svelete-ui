@@ -6,6 +6,10 @@
 </script>
 
 <ModalHost>
+	<svelte:fragment slot="trigger" let:toggle>
+		<slot name="trigger" {toggle}></slot>
+	</svelte:fragment>
+
 	<svelte:fragment slot="inner">
 		<div class="bg-white rounded-lg overflow-hidden lg:w-[447px] mx-auto">
 			<div class="py-6 px-4">
