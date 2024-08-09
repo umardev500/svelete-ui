@@ -1,5 +1,9 @@
 <script lang="ts">
+	import EditIcon from '@components/atoms/icons/custom/EditIcon.svelte';
+	import MoreIcon from '@components/atoms/icons/custom/MoreIcon.svelte';
+	import DeleteIcon from '@components/atoms/icons/DeleteIcon.svelte';
 	import ListIcon from '@components/atoms/icons/ListIcon.svelte';
+	import DropdownMenu from '@components/molecules/dropdown/DropdownMenu.svelte';
 	import type { CategoryMenu } from '@typed/category';
 
 	export let item: CategoryMenu;
@@ -7,13 +11,32 @@
 	export let currentRouteId: string;
 </script>
 
-<li class="h-full">
-	<a
-		class={`item text-gray-800 text-base relative h-full flex items-center px-4 ${currentRouteId === prefix + item.slug ? 'font-medium' : ''}`}
-		href="{prefix}/{item.slug}"
-	>
-		<ListIcon classList="!size-4 absolute opacity-0 dragging-icon" />
+<li class="h-full group flex relative">
+	<DropdownMenu>
+		<svelte:fragment slot="trigger" let:toggleDropdown>
+			<div class="flex h-full">
+				<a
+					class={`item text-gray-800 text-base relative h-full flex items-center px-2 ${currentRouteId === prefix + item.slug ? 'font-medium' : ''}`}
+					href="{prefix}/{item.slug}"
+				>
+					<ListIcon classList="!size-4 absolute opacity-0 dragging-icon" />
+					{item.title}
+				</a>
+				<button class="opacity-0 group-hover:opacity-100" on:click={toggleDropdown}>
+					<MoreIcon classList="rotate-90" />
+				</button>
+			</div>
+		</svelte:fragment>
 
-		{item.title}</a
-	>
+		<svelte:fragment slot="menu">
+			<button class="w-full flex text-left px-4 py-2 justify-between hover:bg-gray-50 rounded-lg">
+				<span>Edit</span>
+				<EditIcon classList="!size-5" />
+			</button>
+			<button class="w-full flex text-left px-4 py-2 justify-between hover:bg-gray-50 rounded-lg">
+				<span>Delete</span>
+				<DeleteIcon classList="!size-5 fill-red-500" />
+			</button>
+		</svelte:fragment>
+	</DropdownMenu>
 </li>
