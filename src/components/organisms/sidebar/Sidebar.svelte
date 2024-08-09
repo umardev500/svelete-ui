@@ -43,7 +43,10 @@
 			<span class="font-bold text-black">API Saga</span>
 		</div>
 
-		<button on:click={toggle} class="hover:text-gray-800 absolute right-4 toggler hidden">
+		<button
+			on:click={toggle}
+			class="hover:text-gray-800 absolute right-4 toggler hidden lg:inline-flex"
+		>
 			<ListIcon classList="!size-5 fill-current" />
 		</button>
 		<!-- End of Top Desktop -->
