@@ -1,4 +1,6 @@
 <script lang="ts">
+	import MoreIcon from '@components/atoms/icons/custom/MoreIcon.svelte';
+	import SearchIcon from '@components/atoms/icons/custom/SearchIcon.svelte';
 	import ListIcon from '@components/atoms/icons/ListIcon.svelte';
 	import HeaderMenuLeftList from '@components/organisms/header/HeaderMenuLeftList.svelte';
 	import HeaderRightMenuList from '@components/organisms/header/HeaderRightMenuList.svelte';
@@ -22,10 +24,19 @@
 	style="--sidebar-width: {sidebarOpen ? '22.125rem' : '4.5rem'}"
 >
 	<nav class="px-4 h-16 border-b relative">
-		<div class="h-full flex items-center justify-between mobile-menu">
+		<div class="h-full flex items-center justify-between mobile-menu lg:hidden w-full">
 			<div class="flex items-center gap-2">
 				<ListIcon />
 				<span class="font-bold text-base">API Saga</span>
+			</div>
+
+			<div class="flex items-center gap-2">
+				<button>
+					<SearchIcon />
+				</button>
+				<button>
+					<MoreIcon />
+				</button>
 			</div>
 		</div>
 		<div class="h-full flex items-center justify-between desktop-menu">

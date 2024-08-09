@@ -1,6 +1,8 @@
 <script lang="ts">
 	import SidebarAddNewMenu from '@components/atoms/button/SidebarAddNewMenu.svelte';
 	import ArrowLeft from '@components/atoms/icons/ArrowLeft.svelte';
+	import MoreIcon from '@components/atoms/icons/custom/MoreIcon.svelte';
+	import SearchIcon from '@components/atoms/icons/custom/SearchIcon.svelte';
 	import ListIcon from '@components/atoms/icons/ListIcon.svelte';
 	import SidebarMenuList from '@components/organisms/sidebar/SidebarMenuList.svelte';
 	import type { Post } from '@typed/post';
@@ -33,15 +35,34 @@
 	class="sidebar {sidebarOpen ? 'show' : ''} bottom-0 top-0 left-0 pb-6 border-r bg-white z-20"
 >
 	<div class="flex items-center border-b h-16 px-4 heading relative">
-		<div class="flex items-center gap-2 text-nowrap text w-full">
+		<!-- Top Desktop -->
+		<div class="lg:flex items-center gap-2 text-nowrap text w-full sidebar-top-desktop hidden">
 			<span class="text-gray-900">
 				<ArrowLeft classList="fill-current" />
 			</span>
 			<span class="font-bold text-black">API Saga</span>
 		</div>
-		<button on:click={toggle} class="hover:text-gray-800 absolute right-4 toggler">
+
+		<button on:click={toggle} class="hover:text-gray-800 absolute right-4 toggler hidden">
 			<ListIcon classList="!size-5 fill-current" />
 		</button>
+		<!-- End of Top Desktop -->
+
+		<div class="h-full flex items-center justify-between mobile-menu lg:hidden w-full">
+			<div class="flex items-center gap-2">
+				<ListIcon />
+				<span class="font-bold text-base">API Saga</span>
+			</div>
+
+			<div class="flex items-center gap-2">
+				<button>
+					<SearchIcon />
+				</button>
+				<button>
+					<MoreIcon />
+				</button>
+			</div>
+		</div>
 	</div>
 
 	<!-- Content -->
@@ -130,6 +151,8 @@
 		}
 
 		&.show {
+			left: 0rem;
+
 			.banner {
 				opacity: 1;
 			}
