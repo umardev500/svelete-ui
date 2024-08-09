@@ -16,7 +16,7 @@
 		<svelte:fragment slot="trigger" let:toggleDropdown>
 			<div class="flex h-full">
 				<a
-					class={`item text-gray-800 text-base relative h-full flex items-center px-2 ${currentRouteId === prefix + item.slug ? 'font-medium' : ''}`}
+					class={`item text-gray-500 text-base relative h-full flex items-center px-2 ${currentRouteId === prefix + item.slug ? 'font-medium' : ''}`}
 					href="{prefix}/{item.slug}"
 				>
 					<ListIcon classList="!size-4 absolute opacity-0 dragging-icon" />
