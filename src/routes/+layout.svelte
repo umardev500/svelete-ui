@@ -5,7 +5,7 @@
 	import { leftMenuStore } from '../stores/leftMenu';
 	import '../styles/app.scss';
 
-	let sidebarOpen: boolean = false;
+	let sidebarOpen: boolean = true;
 	export let data;
 
 	function toggleSidebar() {

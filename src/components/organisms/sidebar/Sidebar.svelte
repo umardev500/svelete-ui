@@ -1,9 +1,9 @@
 <script lang="ts">
 	import SidebarAddNewMenu from '@components/atoms/button/SidebarAddNewMenu.svelte';
 	import ArrowLeft from '@components/atoms/icons/ArrowLeft.svelte';
-	import MoreIcon from '@components/atoms/icons/custom/MoreIcon.svelte';
-	import SearchIcon from '@components/atoms/icons/custom/SearchIcon.svelte';
+	import GithubIcon from '@components/atoms/icons/GithubIcon.svelte';
 	import ListIcon from '@components/atoms/icons/ListIcon.svelte';
+	import SunIcon from '@components/atoms/icons/SunIcon.svelte';
 	import SidebarMenuList from '@components/organisms/sidebar/SidebarMenuList.svelte';
 	import type { Post } from '@typed/post';
 	import 'simplebar';
@@ -56,11 +56,11 @@
 
 			<div class="flex items-center gap-2">
 				<button>
-					<SearchIcon />
+					<SunIcon />
 				</button>
-				<button>
-					<MoreIcon />
-				</button>
+				<a href="https://github.com/umardev500">
+					<GithubIcon />
+				</a>
 			</div>
 		</div>
 	</div>
