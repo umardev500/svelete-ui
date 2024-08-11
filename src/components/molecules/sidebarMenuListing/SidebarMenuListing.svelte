@@ -74,11 +74,13 @@
 
 	let classes: string[] = [];
 	if (isMobileNav) {
+		// (menu.submenu);
 		if (isCategoryMatched) {
 			classes.push('text-gray-800');
 			classes.push('font-medium');
 		} else {
-			classes.push('text-gray-400');
+			if (notSubmenu) classes.push('text-gray-400');
+			if (!notSubmenu) classes.push('text-gray-800');
 		}
 	} else {
 		classes.push('text-gray-800');

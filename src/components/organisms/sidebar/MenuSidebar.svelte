@@ -2,7 +2,7 @@
 	import XMarkFilled from '@components/atoms/icons/custom/XMarkFilled.svelte';
 	import GithubIcon from '@components/atoms/icons/GithubIcon.svelte';
 	import SunIcon from '@components/atoms/icons/SunIcon.svelte';
-	import { leftMenuStore } from '@store/leftMenu';
+	import { leftMenuStore, rightMenuStore } from '@store/leftMenu';
 	import type { Post } from '@typed/post';
 	import { createEventDispatcher, onDestroy } from 'svelte';
 	import SidebarMenuList from './SidebarMenuList.svelte';
@@ -19,9 +19,13 @@
 	const unsubscribe = leftMenuStore.subscribe((data) => {
 		menus = data;
 	});
+	const unsubscribe2 = rightMenuStore.subscribe((data) => {
+		menus = [...menus, ...data];
+	});
 
 	onDestroy(() => {
 		unsubscribe();
+		unsubscribe2();
 	});
 
 	console.log('menu');

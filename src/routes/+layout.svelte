@@ -3,7 +3,7 @@
 	import Header from '@components/organisms/header/Header.svelte';
 	import MenuSidebar from '@components/organisms/sidebar/MenuSidebar.svelte';
 	import Sidebar from '@components/organisms/sidebar/Sidebar.svelte';
-	import { leftMenuStore } from '../stores/leftMenu';
+	import { leftMenuStore, rightMenuStore } from '../stores/leftMenu';
 	import '../styles/app.scss';
 
 	let sidebarOpen: boolean = true;
@@ -21,6 +21,7 @@
 
 	// Initialize left menu of header
 	leftMenuStore.set(data.categories);
+	rightMenuStore.set(data.righMenus);
 </script>
 
 <Sidebar {sidebarOpen} on:toggle={toggleSidebar} />
