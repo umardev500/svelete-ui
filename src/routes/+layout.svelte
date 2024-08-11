@@ -24,14 +24,22 @@
 </script>
 
 <Sidebar {sidebarOpen} on:toggle={toggleSidebar} />
+
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-no-static-element-interactions -->
-<div on:click={toggleSidebar} class="backdrop {sidebarOpen ? 'show' : ''}"></div>
+<div
+	on:click={sidebarOpen ? toggleSidebar : toggleMobileNav}
+	class="backdrop {sidebarOpen || mobileNavOpen ? 'show' : ''}"
+></div>
+
 <Header {sidebarOpen} on:toggleMobileNav={toggleMobileNav} on:toggle={toggleSidebar} />
+
 <main class="main-content-wrapper" style="--sidebar-width: {sidebarOpen ? '22.125rem' : '4.5rem'}">
 	<slot></slot>
 </main>
+
 <MenuSidebar on:toggle={toggleMobileNav} sidebarOpen={mobileNavOpen} />
+
 <Footer />
 
 <style lang="scss">
