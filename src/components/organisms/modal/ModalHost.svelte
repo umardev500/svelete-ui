@@ -15,7 +15,7 @@
 		? 'show'
 		: ''} fixed top-0 h-full right-0 bottom-0 left-0 px-4 lg:px-6 py-4 lg:py-6"
 >
-	<slot name="inner"></slot>
+	<slot name="inner" {toggle}></slot>
 </div>
 
 <style lang="scss">

@@ -10,6 +10,11 @@
 	export let item: Menu;
 	export let prefix: string;
 	export let currentRouteId: string;
+
+	const confirmDeleting = (e: CustomEvent<() => void>) => {
+		console.log('do deleting');
+		e.detail(); // toggle modal
+	};
 </script>
 
 <li class="h-full group flex relative">
@@ -37,6 +42,7 @@
 			<DeleteConfirm
 				text="Are you sure you want to delete this page?"
 				subText="This action cannot be undone."
+				on:confirm={confirmDeleting}
 			>
 				<svelte:fragment slot="trigger" let:toggle>
 					<button

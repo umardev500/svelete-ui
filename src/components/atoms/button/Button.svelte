@@ -1,7 +1,12 @@
 <script lang="ts">
+	import { createEventDispatcher } from 'svelte';
+
+	const dispatch = createEventDispatcher();
+
 	export let classList = '';
 	export let variant: 'primary' | 'secondary' = 'primary';
 	export let size: 'small' | 'medium' | 'large' = 'medium';
+
 	let backgroundColor = 'bg-emerald-700';
 	let hoverBackgroundColor = 'hover:bg-emerald-800';
 	let textColor = 'text-white';
@@ -23,6 +28,9 @@
 </script>
 
 <button
+	on:click={() => {
+		dispatch('click');
+	}}
 	class="w-full border {borderColor} {backgroundColor} {hoverBackgroundColor} {textColor} rounded-xl text-base {h} font-medium px-4 py-2 {additionalClasses} {classList}"
 >
 	<slot></slot>
