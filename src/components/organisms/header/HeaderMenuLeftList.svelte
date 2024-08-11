@@ -2,7 +2,7 @@
 	import { page } from '$app/stores';
 	import PlusIcon from '@components/atoms/icons/PlusIcon.svelte';
 	import HeaderLeftMenuListing from '@components/molecules/header/HeaderLeftMenuListing.svelte';
-	import type { Menu } from '@typed/category';
+	import type { Menu } from '@typed/menu';
 	import Sortable from 'sortablejs';
 	import { onMount } from 'svelte';
 

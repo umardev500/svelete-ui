@@ -5,7 +5,7 @@
 	import ListIcon from '@components/atoms/icons/ListIcon.svelte';
 	import DropdownMenu from '@components/molecules/dropdown/DropdownMenu.svelte';
 	import DeleteConfirm from '@components/organisms/modals/DeleteConfirm.svelte';
-	import type { Menu } from '@typed/category';
+	import type { Menu } from '@typed/menu';
 
 	export let item: Menu;
 	export let prefix: string;

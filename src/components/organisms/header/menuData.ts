@@ -1,4 +1,4 @@
-import type { Menu } from '@typed/category';
+import type { Menu } from '@typed/menu';
 
 export const leftMenuData: Menu[] = [
 	{ id: 1, title: 'Golang', slug: 'golang' },
