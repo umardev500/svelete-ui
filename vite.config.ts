@@ -9,7 +9,8 @@ export default defineConfig({
 		alias: {
 			'@components': path.resolve(__dirname, 'src/components'),
 			'@typed': path.resolve(__dirname, 'src/types'),
-			'@lib': path.resolve(__dirname, 'src/lib')
+			'@lib': path.resolve(__dirname, 'src/lib'),
+			'@store': path.resolve(__dirname, 'src/stores')
 		}
 	}
 });

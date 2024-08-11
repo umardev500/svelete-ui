@@ -1,0 +1,75 @@
+<script lang="ts">
+	import XMarkFilled from '@components/atoms/icons/custom/XMarkFilled.svelte';
+	import GithubIcon from '@components/atoms/icons/GithubIcon.svelte';
+	import SunIcon from '@components/atoms/icons/SunIcon.svelte';
+	import { postStore } from '@store/postData';
+	import type { Post } from '@typed/post';
+	import { onDestroy } from 'svelte';
+	import SidebarMenuList from './SidebarMenuList.svelte';
+	let posts: Post[] = [];
+	const unsubscribe = postStore.subscribe((data) => {
+		posts = data;
+	});
+
+	onDestroy(() => {
+		unsubscribe();
+	});
+
+	$: console.log(posts);
+</script>
+
+<aside id="menu-sidebar" class="show bg-white border-l">
+	<div class="flex items-center h-16 px-4 justify-between">
+		<span class="font-bold text-black">API Saga</span>
+
+		<div class="flex items-center gap-2">
+			<button>
+				<SunIcon />
+			</button>
+			<a href="https://github.com/umardev500">
+				<GithubIcon />
+			</a>
+			<button>
+				<XMarkFilled />
+			</button>
+		</div>
+	</div>
+
+	<!-- Content -->
+	<div class="bottom-[4.5rem] pb-4 absolute top-16 right-0 left-0" data-simplebar>
+		<!-- Banner -->
+		<enhanced:img
+			class="mx-auto px-6 mt-6 banner w-full"
+			src="$lib/images/go-sidebar-banner.png"
+			alt="banner"
+		/>
+		<!-- End of Banner -->
+
+		<div class="px-4 py-6 text-nowrap menus">
+			<SidebarMenuList isSubmenu={false} {posts} />
+		</div>
+	</div>
+	<!-- End of Content -->
+</aside>
+
+<style lang="scss">
+	#menu-sidebar {
+		position: fixed;
+		font-family: 'Roboto';
+		right: 0;
+		top: 0;
+		bottom: 0;
+		z-index: 1050;
+		transition:
+			right var(--margin-transition-duration) var(--margin-timing-function),
+			width var(--margin-transition-duration) var(--margin-timing-function);
+
+		@media screen and (min-width: 1024px) {
+			right: calc(-1 * var(--menu-sidebar-width));
+		}
+
+		&.show {
+			width: var(--menu-sidebar-width);
+		}
+	}
+</style>
