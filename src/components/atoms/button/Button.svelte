@@ -20,10 +20,10 @@
 		borderColor = 'border-gray-300';
 	}
 
-	let h = 'h-[54px]';
+	let py = 'py-2';
 
-	if (size === 'small') {
-		h = 'h-[40px]';
+	if (size === 'large') {
+		py = 'py-4';
 	}
 </script>
 
@@ -31,7 +31,7 @@
 	on:click={() => {
 		dispatch('click');
 	}}
-	class="w-full border {borderColor} {backgroundColor} {hoverBackgroundColor} {textColor} rounded-xl text-base {h} font-medium px-4 py-2 {additionalClasses} {classList}"
+	class="w-full border text-nowrap {borderColor} {backgroundColor} {hoverBackgroundColor} {textColor} rounded-xl text-base {py} font-medium px-6 {additionalClasses} {classList}"
 >
 	<slot></slot>
 </button>

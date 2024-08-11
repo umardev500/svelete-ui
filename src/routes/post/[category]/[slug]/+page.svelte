@@ -41,7 +41,7 @@
 		<!-- End of contet -->
 
 		<!-- Editor -->
-		<div class="bg-red-100">
+		<div class="bg-white mt-11">
 			<Editor />
 		</div>
 		<!-- End of Editor -->
