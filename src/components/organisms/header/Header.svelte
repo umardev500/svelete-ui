@@ -4,12 +4,12 @@
 	import ListIcon from '@components/atoms/icons/ListIcon.svelte';
 	import HeaderMenuLeftList from '@components/organisms/header/HeaderMenuLeftList.svelte';
 	import HeaderRightMenuList from '@components/organisms/header/HeaderRightMenuList.svelte';
-	import type { CategoryMenu } from '@typed/category';
+	import type { Menu } from '@typed/category';
 	import { createEventDispatcher, onDestroy } from 'svelte';
 	import { leftMenuStore } from '../../../stores/leftMenu';
 	export let sidebarOpen: boolean;
 
-	let items: CategoryMenu[] = [];
+	let items: Menu[] = [];
 	const unsubscribe = leftMenuStore.subscribe((value) => {
 		items = value;
 	});

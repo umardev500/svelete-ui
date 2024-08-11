@@ -1,6 +1,6 @@
-import type { CategoryMenu } from '@typed/category';
+import type { Menu } from '@typed/category';
 
-export const leftMenuData: CategoryMenu[] = [
+export const leftMenuData: Menu[] = [
 	{ id: 1, title: 'Golang', slug: 'golang' },
 	{ id: 2, title: 'React', slug: 'react' },
 	{ id: 3, title: 'Tailwind', slug: 'tailwind' },

@@ -1,4 +1,4 @@
-import type { CategoryMenu } from '@typed/category';
+import type { Menu } from '@typed/category';
 import { writable } from 'svelte/store';
 
-export const leftMenuStore = writable<CategoryMenu[]>([]);
+export const leftMenuStore = writable<Menu[]>([]);
