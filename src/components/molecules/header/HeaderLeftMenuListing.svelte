@@ -40,7 +40,7 @@
 				<EditIcon classList="!size-5" />
 			</button>
 			<DeleteConfirm
-				text="Are you sure you want to delete this page?"
+				text="Are you sure you want to delete this menu?"
 				subText="This action cannot be undone."
 				on:confirm={confirmDeleting}
 			>

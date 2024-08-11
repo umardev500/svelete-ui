@@ -1,21 +1,35 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { portal } from 'svelte-portal';
+	let modalEl: HTMLElement;
+	let innerEl: HTMLElement;
 
 	let open = false;
 	const toggle = () => {
 		open = !open;
 	};
+
+	onMount(() => {
+		modalEl.addEventListener('click', (e) => {
+			if (!innerEl.contains(e.target as Node)) {
+				open = false;
+			}
+		});
+	});
 </script>
 
 <slot name="trigger" {toggle}></slot>
 
 <div
+	bind:this={modalEl}
 	use:portal={'body'}
 	class="modal-host {open
 		? 'show'
 		: ''} fixed top-0 h-full right-0 bottom-0 left-0 px-4 lg:px-6 py-4 lg:py-6"
 >
-	<slot name="inner" {toggle}></slot>
+	<div bind:this={innerEl}>
+		<slot name="inner" {toggle}></slot>
+	</div>
 </div>
 
 <style lang="scss">
