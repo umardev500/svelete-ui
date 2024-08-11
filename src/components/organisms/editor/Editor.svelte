@@ -36,7 +36,7 @@ func main() {
 	$: console.log(value);
 </script>
 
-<div class="border md-editor-container rounded-lg overflow-hidden">
+<div class="border md-editor-container rounded-2xl overflow-hidden">
 	<div class="flex items-center py-4 px-4 justify-between">
 		<div class="flex tab items-center gap-4">
 			<button class="active text-nowrap text-gray-500">Write</button>

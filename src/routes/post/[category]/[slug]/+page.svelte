@@ -1,7 +1,6 @@
 <script lang="ts">
 	import Breadcrumbs from '@components/molecules/Breadcrumbs.svelte';
 	import PostInfo from '@components/molecules/PostInfo.svelte';
-	import Editor from '@components/organisms/editor/Editor.svelte';
 	import OnThisPage from '@components/organisms/OnThisPage.svelte';
 	import RightSidebar from '@components/organisms/sidebar/RightSidebar.svelte';
 	import { onMount } from 'svelte';
@@ -15,8 +14,8 @@
 </script>
 
 <main class="px-6 flex">
-	<div class="w-full">
-		<div class="w-full hidden">
+	<div class="w-full mr-[250px]">
+		<div class="w-full">
 			<!-- Breadcrumb -->
 			<div class="mt-6">
 				<Breadcrumbs {data} />
@@ -39,12 +38,6 @@
 		<!-- Content -->
 		<section></section>
 		<!-- End of contet -->
-
-		<!-- Editor -->
-		<div class="bg-white mt-11">
-			<Editor />
-		</div>
-		<!-- End of Editor -->
 
 		<!-- Content link -->
 		<!-- Content link -->
