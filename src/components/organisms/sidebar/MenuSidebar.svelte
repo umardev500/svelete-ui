@@ -80,6 +80,10 @@
 
 		&.show {
 			right: 0;
+
+			@media screen and (min-width: 1024px) {
+				right: calc(-1 * var(--menu-sidebar-width));
+			}
 		}
 	}
 </style>
