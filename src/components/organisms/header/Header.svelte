@@ -22,6 +22,10 @@
 	const toggle = () => {
 		dispatch('toggle');
 	};
+
+	const toggleMobileNav = () => {
+		dispatch('toggleMobileNav');
+	};
 </script>
 
 <header
@@ -41,7 +45,7 @@
 				<button>
 					<SearchIcon />
 				</button>
-				<button>
+				<button on:click={toggleMobileNav}>
 					<MoreIcon />
 				</button>
 			</div>

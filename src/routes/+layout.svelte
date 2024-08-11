@@ -7,10 +7,16 @@
 	import '../styles/app.scss';
 
 	let sidebarOpen: boolean = true;
+	let mobileNavOpen: boolean = false;
+
 	export let data;
 
 	function toggleSidebar() {
 		sidebarOpen = !sidebarOpen;
+	}
+
+	function toggleMobileNav() {
+		mobileNavOpen = !mobileNavOpen;
 	}
 
 	// Initialize left menu of header
@@ -21,11 +27,11 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <div on:click={toggleSidebar} class="backdrop {sidebarOpen ? 'show' : ''}"></div>
-<Header {sidebarOpen} on:toggle={toggleSidebar} />
+<Header {sidebarOpen} on:toggleMobileNav={toggleMobileNav} on:toggle={toggleSidebar} />
 <main class="main-content-wrapper" style="--sidebar-width: {sidebarOpen ? '22.125rem' : '4.5rem'}">
 	<slot></slot>
 </main>
-<MenuSidebar />
+<MenuSidebar on:toggle={toggleMobileNav} sidebarOpen={mobileNavOpen} />
 <Footer />
 
 <style lang="scss">

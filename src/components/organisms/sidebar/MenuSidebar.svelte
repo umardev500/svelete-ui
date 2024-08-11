@@ -4,8 +4,17 @@
 	import SunIcon from '@components/atoms/icons/SunIcon.svelte';
 	import { postStore } from '@store/postData';
 	import type { Post } from '@typed/post';
-	import { onDestroy } from 'svelte';
+	import { createEventDispatcher, onDestroy } from 'svelte';
 	import SidebarMenuList from './SidebarMenuList.svelte';
+
+	export let sidebarOpen: boolean;
+
+	const dispatch = createEventDispatcher();
+
+	const toggle = () => {
+		dispatch('toggle');
+	};
+
 	let posts: Post[] = [];
 	const unsubscribe = postStore.subscribe((data) => {
 		posts = data;
@@ -18,7 +27,7 @@
 	$: console.log(posts);
 </script>
 
-<aside id="menu-sidebar" class="show bg-white border-l">
+<aside id="menu-sidebar" class="{sidebarOpen ? 'show' : ''} bg-white border-l">
 	<div class="flex items-center h-16 px-4 justify-between">
 		<span class="font-bold text-black">API Saga</span>
 
@@ -29,7 +38,7 @@
 			<a href="https://github.com/umardev500">
 				<GithubIcon />
 			</a>
-			<button>
+			<button on:click={toggle}>
 				<XMarkFilled />
 			</button>
 		</div>
@@ -56,20 +65,19 @@
 	#menu-sidebar {
 		position: fixed;
 		font-family: 'Roboto';
-		right: 0;
+		right: calc(-1 * var(--menu-sidebar-width));
 		top: 0;
 		bottom: 0;
 		z-index: 1050;
-		transition:
-			right var(--margin-transition-duration) var(--margin-timing-function),
-			width var(--margin-transition-duration) var(--margin-timing-function);
+		width: var(--menu-sidebar-width);
+		transition: right var(--margin-transition-duration) var(--margin-timing-function);
 
 		@media screen and (min-width: 1024px) {
 			right: calc(-1 * var(--menu-sidebar-width));
 		}
 
 		&.show {
-			width: var(--menu-sidebar-width);
+			right: 0;
 		}
 	}
 </style>
