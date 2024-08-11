@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import SidebarMenuListing from '@components/molecules/sidebarMenuListing/SidebarMenuListing.svelte';
+	import type { Menu } from '@typed/menu';
 	import type { Params } from '@typed/page';
-	import type { Post } from '@typed/post';
 	import Sortable from 'sortablejs';
 	import { onDestroy, onMount } from 'svelte';
 
@@ -11,8 +11,9 @@
 	let sortableEl: HTMLElement;
 	export let isMobileNav: boolean = false;
 
-	export let posts: Post[] = [];
+	export let posts: Menu[] = [];
 	export let isSubmenu: boolean;
+	export let selectableParent: HTMLElement | null = null;
 
 	let isLoaded: boolean = false;
 
@@ -120,6 +121,7 @@
 <ul bind:this={sortableEl} class="menu-list sidebar-menu-left py-1 {isSubmenu ? 'border-l' : ''}">
 	{#each posts as post}
 		<SidebarMenuListing
+			{selectableParent}
 			{isMobileNav}
 			childrenOfSubMenu={isSubmenu}
 			category={parameters.category}

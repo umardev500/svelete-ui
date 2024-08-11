@@ -3,7 +3,7 @@
 	import GithubIcon from '@components/atoms/icons/GithubIcon.svelte';
 	import SunIcon from '@components/atoms/icons/SunIcon.svelte';
 	import { leftMenuStore, rightMenuStore } from '@store/leftMenu';
-	import type { Post } from '@typed/post';
+	import type { Menu } from '@typed/menu';
 	import { createEventDispatcher, onDestroy } from 'svelte';
 	import SidebarMenuList from './SidebarMenuList.svelte';
 
@@ -15,7 +15,7 @@
 		dispatch('toggle');
 	};
 
-	let menus: Post[] = [];
+	let menus: Menu[] = [];
 	const unsubscribe = leftMenuStore.subscribe((data) => {
 		menus = data;
 	});
@@ -27,8 +27,6 @@
 		unsubscribe();
 		unsubscribe2();
 	});
-
-	console.log('menu');
 </script>
 
 <aside id="menu-sidebar" class="{sidebarOpen ? 'show' : ''} bg-white border-l">

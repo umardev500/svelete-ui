@@ -4,10 +4,12 @@
 	import ListIcon from '@components/atoms/icons/ListIcon.svelte';
 	import PenIcon from '@components/atoms/icons/PenIcon.svelte';
 	import SidebarMenuList from '@components/organisms/sidebar/SidebarMenuList.svelte';
-	import type { Post } from '@typed/post';
-	import { onMount } from 'svelte';
+	import { langStore } from '@store/lang';
+	import type { Menu } from '@typed/menu';
+	import { createEventDispatcher, onMount } from 'svelte';
+	const dispatch = createEventDispatcher();
 
-	export let menu: Post;
+	export let menu: Menu;
 	export let category: string;
 	export let childrenOfSubMenu: boolean;
 	export let isMobileNav: boolean = false;
@@ -26,8 +28,22 @@
 	let isOpen: boolean;
 
 	const notSubmenu = menu.slug || !menu.submenu;
+	export let selectableParent: HTMLElement | null = null;
 
 	const handleClick = (e: Event) => {
+		if (selectableParent) {
+			e.preventDefault();
+			const itemTextEl = selectableParent
+				.querySelector('a.item')
+				?.querySelector('span') as HTMLElement;
+			itemTextEl.innerText = menu.title;
+
+			// Do any action here
+			langStore.set(menu.title);
+
+			return;
+		}
+
 		if (notSubmenu) {
 			return;
 		}
@@ -72,6 +88,9 @@
 		actionsEl?.classList.toggle('opacity-0');
 	};
 
+	let thisElement: HTMLElement | null = null;
+	const selectable = menu.selectable;
+
 	let classes: string[] = [];
 	if (isMobileNav) {
 		// (menu.submenu);
@@ -93,7 +112,7 @@
 	}
 </script>
 
-<li class="sortable-item relative">
+<li class="sortable-item relative" bind:this={thisElement}>
 	<a
 		on:mouseenter={toggleOpacityActions}
 		on:mouseleave={toggleOpacityActions}
@@ -125,7 +144,11 @@
 
 	{#if menu.submenu}
 		<div class="submenu-container" bind:this={submenuContainerEl}>
-			<SidebarMenuList isSubmenu={true} posts={menu.submenu} />
+			<SidebarMenuList
+				selectableParent={selectable ? thisElement : null}
+				isSubmenu={true}
+				posts={menu.submenu}
+			/>
 		</div>
 	{/if}
 </li>
