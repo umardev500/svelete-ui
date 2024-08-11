@@ -1,4 +1,4 @@
-export type params = {
+export type Params = {
 	category: string;
 	slug: string;
 };

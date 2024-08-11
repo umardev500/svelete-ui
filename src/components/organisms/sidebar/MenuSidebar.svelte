@@ -2,7 +2,7 @@
 	import XMarkFilled from '@components/atoms/icons/custom/XMarkFilled.svelte';
 	import GithubIcon from '@components/atoms/icons/GithubIcon.svelte';
 	import SunIcon from '@components/atoms/icons/SunIcon.svelte';
-	import { postStore } from '@store/postData';
+	import { leftMenuStore } from '@store/leftMenu';
 	import type { Post } from '@typed/post';
 	import { createEventDispatcher, onDestroy } from 'svelte';
 	import SidebarMenuList from './SidebarMenuList.svelte';
@@ -15,14 +15,16 @@
 		dispatch('toggle');
 	};
 
-	let posts: Post[] = [];
-	const unsubscribe = postStore.subscribe((data) => {
-		posts = data;
+	let menus: Post[] = [];
+	const unsubscribe = leftMenuStore.subscribe((data) => {
+		menus = data;
 	});
 
 	onDestroy(() => {
 		unsubscribe();
 	});
+
+	console.log('menu');
 </script>
 
 <aside id="menu-sidebar" class="{sidebarOpen ? 'show' : ''} bg-white border-l">
@@ -53,7 +55,7 @@
 		<!-- End of Banner -->
 
 		<div class="px-4 py-6 text-nowrap menus">
-			<SidebarMenuList isSubmenu={false} {posts} />
+			<SidebarMenuList isMobileNav={true} isSubmenu={false} posts={menus} />
 		</div>
 	</div>
 	<!-- End of Content -->

@@ -4,12 +4,21 @@
 	import ListIcon from '@components/atoms/icons/ListIcon.svelte';
 	import PenIcon from '@components/atoms/icons/PenIcon.svelte';
 	import SidebarMenuList from '@components/organisms/sidebar/SidebarMenuList.svelte';
+	import type { Params } from '@typed/page';
 	import type { Post } from '@typed/post';
 	import { onMount } from 'svelte';
 
-	export let post: Post;
+	export let menu: Post;
 	export let category: string;
 	export let childrenOfSubMenu: boolean;
+	export let isMobileNav: boolean = false;
+	export let params: Params | null = null;
+
+	let isCategoryMatched: boolean = false;
+
+	if (isMobileNav) {
+		isCategoryMatched = category == menu.slug;
+	}
 
 	// Elements
 	let submenuContainerEl: HTMLElement;
@@ -18,7 +27,7 @@
 	let loaded: boolean;
 	let isOpen: boolean;
 
-	const notSubmenu = post.slug || !post.submenu;
+	const notSubmenu = menu.slug || !menu.submenu;
 
 	const handleClick = (e: Event) => {
 		if (notSubmenu) {
@@ -64,23 +73,41 @@
 		const actionsEl = parentEl.querySelector('.actions');
 		actionsEl?.classList.toggle('opacity-0');
 	};
+
+	let classes: string[] = [];
+	if (isMobileNav) {
+		if (isCategoryMatched) {
+			classes.push('text-gray-800');
+			classes.push('font-medium');
+		} else {
+			classes.push('text-gray-400');
+		}
+	} else {
+		classes.push('text-gray-800');
+
+		if (childrenOfSubMenu) {
+			classes.push('pl-6');
+		} else {
+			classes.push('font-medium');
+		}
+	}
 </script>
 
 <li class="sortable-item relative">
 	<a
 		on:mouseenter={toggleOpacityActions}
 		on:mouseleave={toggleOpacityActions}
-		class="item py-2.5 flex z-10 relative text-base rounded-lg px-4 hover:bg-gray-50 items-center justify-between {childrenOfSubMenu
-			? 'pl-6'
-			: ''}"
+		class="{classes.join(
+			' '
+		)} item py-2.5 flex z-10 relative text-base rounded-lg px-4 hover:bg-gray-50 items-center justify-between"
 		on:click={handleClick}
-		href="/post/{category}/{post.slug}"
+		href="/post/{category}/{menu.slug}"
 	>
 		<ListIcon classList="!size-4 absolute opacity-0 dragging-icon" />
 
-		<span>{post.title}</span>
+		<span>{menu.title}</span>
 
-		{#if post.submenu}
+		{#if menu.submenu}
 			<AngleRight classList="!size-5 angle {isOpen ? 'show' : ''}" />
 		{/if}
 	</a>
@@ -96,9 +123,9 @@
 		</button>
 	</div>
 
-	{#if post.submenu}
+	{#if menu.submenu}
 		<div class="submenu-container" bind:this={submenuContainerEl}>
-			<SidebarMenuList isSubmenu={true} posts={post.submenu} />
+			<SidebarMenuList isSubmenu={true} posts={menu.submenu} />
 		</div>
 	{/if}
 </li>
