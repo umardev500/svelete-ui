@@ -23,8 +23,6 @@
 	onDestroy(() => {
 		unsubscribe();
 	});
-
-	$: console.log(posts);
 </script>
 
 <aside id="menu-sidebar" class="{sidebarOpen ? 'show' : ''} bg-white border-l">
