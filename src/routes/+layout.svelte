@@ -35,7 +35,10 @@
 
 <Header {sidebarOpen} on:toggleMobileNav={toggleMobileNav} on:toggle={toggleSidebar} />
 
-<main class="main-content-wrapper" style="--sidebar-width: {sidebarOpen ? '22.125rem' : '4.5rem'}">
+<main
+	class="main-content-wrapper mr-[250px]"
+	style="--sidebar-width: {sidebarOpen ? '22.125rem' : '4.5rem'}"
+>
 	<slot></slot>
 </main>
 

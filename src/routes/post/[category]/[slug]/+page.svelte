@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Breadcrumbs from '@components/molecules/Breadcrumbs.svelte';
 	import PostInfo from '@components/molecules/PostInfo.svelte';
+	import Editor from '@components/organisms/editor/Editor.svelte';
 	import OnThisPage from '@components/organisms/OnThisPage.svelte';
 	import RightSidebar from '@components/organisms/sidebar/RightSidebar.svelte';
 	import { onMount } from 'svelte';
@@ -13,34 +14,42 @@
 	});
 </script>
 
-<main class="px-6 flex justify-between">
+<main class="px-6 flex">
 	<div class="w-full">
-		<!-- Breadcrumb -->
-		<div class="mt-6">
-			<Breadcrumbs {data} />
-		</div>
-		<!-- End of Breadcrumb -->
+		<div class="w-full hidden">
+			<!-- Breadcrumb -->
+			<div class="mt-6">
+				<Breadcrumbs {data} />
+			</div>
+			<!-- End of Breadcrumb -->
 
-		<!-- Post Info -->
-		<div class="mt-6">
-			<PostInfo />
-		</div>
-		<!-- End of Post Info -->
+			<!-- Post Info -->
+			<div class="mt-6">
+				<PostInfo />
+			</div>
+			<!-- End of Post Info -->
 
-		<!-- On This Page -->
-		<div class="mt-6">
-			<OnThisPage />
+			<!-- On This Page -->
+			<div class="mt-6">
+				<OnThisPage />
+			</div>
+			<!-- End of On This Page -->
 		</div>
-		<!-- End of On This Page -->
+
+		<!-- Content -->
+		<section></section>
+		<!-- End of contet -->
+
+		<!-- Editor -->
+		<div class="bg-red-100">
+			<Editor />
+		</div>
+		<!-- End of Editor -->
+
+		<!-- Content link -->
+		<!-- Content link -->
 	</div>
-
-	<!-- Content -->
-	<section></section>
-	<!-- End of contet -->
-
-	<!-- Content link -->
 	<RightSidebar classList="fixed" />
-	<!-- Content link -->
 </main>
 
 {#if isLoaded}
