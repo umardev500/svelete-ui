@@ -4,7 +4,6 @@
 	import ListIcon from '@components/atoms/icons/ListIcon.svelte';
 	import PenIcon from '@components/atoms/icons/PenIcon.svelte';
 	import SidebarMenuList from '@components/organisms/sidebar/SidebarMenuList.svelte';
-	import type { Params } from '@typed/page';
 	import type { Post } from '@typed/post';
 	import { onMount } from 'svelte';
 
@@ -12,7 +11,6 @@
 	export let category: string;
 	export let childrenOfSubMenu: boolean;
 	export let isMobileNav: boolean = false;
-	export let params: Params | null = null;
 
 	let isCategoryMatched: boolean = false;
 

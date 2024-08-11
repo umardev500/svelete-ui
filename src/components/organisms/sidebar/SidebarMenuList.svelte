@@ -120,7 +120,6 @@
 <ul bind:this={sortableEl} class="menu-list sidebar-menu-left py-1 {isSubmenu ? 'border-l' : ''}">
 	{#each posts as post}
 		<SidebarMenuListing
-			params={parameters}
 			{isMobileNav}
 			childrenOfSubMenu={isSubmenu}
 			category={parameters.category}
