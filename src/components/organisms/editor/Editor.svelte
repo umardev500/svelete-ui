@@ -7,10 +7,13 @@
 
 	import '$lib/styles/github.scss';
 	import Button from '@components/atoms/button/Button.svelte';
+	import HtmlView from '@components/organisms/editor/HtmlView.svelte';
+	import Preview from '@components/organisms/editor/Preview.svelte';
+	import Tab from '@components/organisms/tab/Tab.svelte';
 
 	const carta = new Carta({
 		sanitizer: false,
-		theme: 'github-light',
+		theme: 'vitesse-light',
 		extensions: [
 			attachment({
 				async upload() {
@@ -37,28 +40,52 @@ func main() {
 </script>
 
 <div class="border md-editor-container rounded-2xl overflow-hidden">
-	<div class="flex items-center py-4 px-4 justify-between">
-		<div class="flex tab items-center gap-4">
-			<button class="active text-nowrap text-gray-500">Write</button>
-			<button class="text-nowrap text-gray-500">HTML</button>
-			<button class="text-nowrap text-gray-500">Preview</button>
-		</div>
-		<div class="flex items-center gap-2">
-			<Button variant="secondary">Cancel</Button>
-			<Button>Save Changes</Button>
-		</div>
-	</div>
+	<Tab
+		tabs={[
+			{ name: 'Editor', active: false },
+			{ name: 'HTML', active: false },
+			{ name: 'Preview', active: false }
+		]}
+	>
+		<svelte:fragment slot="tab" let:tabs let:toggle let:activeTab>
+			<div class="flex items-center py-4 px-4 justify-between">
+				<div class="flex tab items-center">
+					{#each tabs as tab, i}
+						<button
+							on:click={() => toggle(i)}
+							class="{activeTab === i ? 'active' : ''} text-nowrap text-gray-500">{tab.name}</button
+						>
+					{/each}
+				</div>
+				<div class="flex items-center gap-2">
+					<Button variant="secondary">Cancel</Button>
+					<Button>Save Changes</Button>
+				</div>
+			</div>
+		</svelte:fragment>
 
-	<MarkdownEditor bind:value mode="tabs" theme="github" {carta} />
+		<svelte:fragment slot="content" let:activeTab>
+			{#if activeTab === 0}
+				<MarkdownEditor bind:value mode="tabs" theme="github" {carta} />
+			{/if}
+
+			{#if activeTab === 1}
+				<HtmlView />
+			{/if}
+
+			{#if activeTab === 2}
+				<Preview />
+			{/if}
+		</svelte:fragment>
+	</Tab>
 </div>
 
 <style>
+	.tab > button {
+		@apply px-4 py-1 rounded-xl border border-white;
+	}
 	.tab .active {
-		@apply border;
-		@apply px-4;
-		@apply py-1;
 		@apply font-medium;
-		@apply rounded-xl;
 		@apply border-gray-300;
 		@apply bg-white;
 		@apply text-gray-800;
