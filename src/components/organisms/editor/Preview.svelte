@@ -31,6 +31,17 @@
 {#if isLoaded}
 	<style lang="scss">
 		.markdown-content {
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6,
+			p,
+			ul > li {
+				@apply text-gray-800;
+			}
+
 			h1 {
 				font-size: 2.5rem; // Typically 40px if the root font size is 16px
 				margin-bottom: 1rem;
