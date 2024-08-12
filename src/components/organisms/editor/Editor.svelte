@@ -48,7 +48,7 @@ func main() {
 		]}
 	>
 		<svelte:fragment slot="tab" let:tabs let:toggle let:activeTab>
-			<div class="flex items-center py-4 px-4 justify-between">
+			<div class="flex items-center py-4 px-4 justify-between border-b">
 				<div class="flex tab items-center">
 					{#each tabs as tab, i}
 						<button
@@ -70,11 +70,11 @@ func main() {
 			{/if}
 
 			{#if activeTab === 1}
-				<HtmlView />
+				<HtmlView mdValue={value} />
 			{/if}
 
 			{#if activeTab === 2}
-				<Preview />
+				<Preview mdValue={value} />
 			{/if}
 		</svelte:fragment>
 	</Tab>
