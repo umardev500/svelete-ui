@@ -14,3 +14,7 @@
 * {
     font-family: 'Roboto';
 }
+
+.hljs {
+    @apply bg-slate-50 !px-6 rounded-xl my-4;
+}

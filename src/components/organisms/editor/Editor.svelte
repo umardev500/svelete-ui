@@ -26,17 +26,29 @@
 		]
 	});
 
-	export let value = `This is an example inspired by [GitHub](https://github.com)
+	export let value = `
+### Calcultion
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+
 \`\`\`go
 package main
-import "fmt"
 
-func main() {
-	fmt.Println("Hello, World!")
+func add(a, b) {
+	return a + b;
 }
-\`\`\``;
+\`\`\`
+### Installation
 
-	$: console.log(value);
+- Install golang compiler [Golang](https://golang.org/)
+- Clone the repository \`git clone https://github.com/carta-dev/carta.git\`
+- Run \`make\`
+
+### Social Links
+
+- [Github](https://github.com/umardev500)
+- [Facebook](https://facebook.com/umardev500)
+`;
 </script>
 
 <div class="border md-editor-container rounded-2xl overflow-hidden">
@@ -44,7 +56,7 @@ func main() {
 		tabs={[
 			{ name: 'Editor', active: false },
 			{ name: 'HTML', active: false },
-			{ name: 'Preview', active: false }
+			{ name: 'Preview', active: true }
 		]}
 	>
 		<svelte:fragment slot="tab" let:tabs let:toggle let:activeTab>

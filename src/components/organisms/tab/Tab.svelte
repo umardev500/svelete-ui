@@ -1,6 +1,6 @@
 <script lang="ts">
 	export let tabs: any[] = [];
-	let activeTab = 0;
+	let activeTab = tabs.findIndex((tab) => tab.active);
 
 	const toggle = (i: number) => {
 		activeTab = i;
