@@ -32,10 +32,10 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor i
 
 
 \`\`\`go
-package main
+package main // Package declaration
 
 func add(a, b) {
-	return a + b;
+	return a + b; // Add two numbers
 }
 \`\`\`
 ### Installation

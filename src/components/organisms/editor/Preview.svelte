@@ -86,10 +86,11 @@
 			}
 
 			code {
-				font-family: 'Ubuntu Mono', monospace;
+				font-family: 'Fira Code', monospace;
 			}
 
 			code:not([class]) {
+				font-family: 'Ubuntu Mono', monospace;
 				@apply font-medium bg-gray-100 px-2 py-1 rounded-lg mx-1 text-gray-800;
 			}
 		}
