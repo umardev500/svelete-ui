@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Markdoc from '@markdoc/markdoc';
 	import toDiffableHtml from 'diffable-html';
 	import he from 'he';
+	import { marked } from 'marked';
 	import { codeToHtml } from 'shiki';
 	import { onMount } from 'svelte';
 
@@ -10,9 +10,7 @@
 	let htmlDecoded = '';
 
 	onMount(() => {
-		const ast = Markdoc.parse(mdValue);
-		const content = Markdoc.transform(ast);
-		const html = Markdoc.renderers.html(content);
+		const html = marked.parse(mdValue) as string;
 		htmlDecoded = he.decode(html);
 
 		codeToHtml(toDiffableHtml(htmlDecoded), {
