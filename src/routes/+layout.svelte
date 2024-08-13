@@ -3,16 +3,19 @@
 	import Header from '@components/organisms/header/Header.svelte';
 	import MenuSidebar from '@components/organisms/sidebar/MenuSidebar.svelte';
 	import Sidebar from '@components/organisms/sidebar/Sidebar.svelte';
+	import { onMount } from 'svelte';
 	import { leftMenuStore, rightMenuStore } from '../stores/leftMenu';
 	import '../styles/app.scss';
 
-	let sidebarOpen: boolean = true;
+	let sidebarOpen: boolean = false;
 	let mobileNavOpen: boolean = false;
+	let hasbeenUpdateSidebarStatus: boolean = false;
 
 	export let data;
 
 	function toggleSidebar() {
 		sidebarOpen = !sidebarOpen;
+		hasbeenUpdateSidebarStatus = true;
 	}
 
 	function toggleMobileNav() {
@@ -22,6 +25,24 @@
 	// Initialize left menu of header
 	leftMenuStore.set(data.categories);
 	rightMenuStore.set(data.righMenus);
+
+	onMount(() => {
+		if (window.matchMedia('(min-width: 1024px)').matches) {
+			sidebarOpen = true;
+		}
+
+		// const handleResize = () => {
+		// 	if (!hasbeenUpdateSidebarStatus) {
+		// 		if (window.matchMedia('(min-width: 1024px)').matches) {
+		// 			sidebarOpen = true;
+		// 		} else {
+		// 			sidebarOpen = false;
+		// 		}
+		// 	}
+		// };
+
+		// window.addEventListener('resize', handleResize);
+	});
 </script>
 
 <Sidebar {sidebarOpen} on:toggle={toggleSidebar} />
