@@ -29,7 +29,7 @@
 </script>
 
 <header
-	class={sidebarOpen ? 'show' : ''}
+	class="bg-white fixed top-0 {sidebarOpen ? 'show' : ''}"
 	style="--sidebar-width: {sidebarOpen ? '22.125rem' : '4.5rem'}"
 >
 	<nav class="px-4 h-16 border-b relative">
@@ -64,13 +64,14 @@
 <style lang="scss">
 	header {
 		font-family: 'Roboto';
-		margin-left: 0rem;
-		transition: margin-left var(--margin-transition-duration) var(--margin-timing-function);
+		left: 0rem;
+		transition: left var(--margin-transition-duration) var(--margin-timing-function);
 		@media screen and (min-width: 1024px) {
-			margin-left: 4.5rem;
+			left: 4.5rem;
+			right: 0;
 
 			&.show {
-				margin-left: 22.125rem;
+				left: 22.125rem;
 			}
 		}
 	}
