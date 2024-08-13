@@ -3,6 +3,7 @@
 	import { portal } from 'svelte-portal';
 	let modalEl: HTMLElement;
 	let innerEl: HTMLElement;
+	export let centerXY: boolean = false;
 
 	export let open = false;
 	const toggle = () => {
@@ -23,23 +24,24 @@
 <div
 	bind:this={modalEl}
 	use:portal={'body'}
-	class="modal-host {open
+	class="items-start modal-host {open
 		? 'show'
 		: ''} fixed top-0 h-full right-0 bottom-0 left-0 px-4 lg:px-6 py-4 lg:py-6"
 >
-	<div bind:this={innerEl}>
+	<div class="mx-auto w-auto h-auto" bind:this={innerEl}>
 		<slot name="inner" {toggle}></slot>
 	</div>
 </div>
 
 <style lang="scss">
 	.modal-host {
-		background-color: rgba(0, 0, 0, 0.4);
+		background-color: rgba(0, 0, 0, 0.2);
+		backdrop-filter: blur(3px);
 		z-index: 9999;
 		display: none;
 
 		&.show {
-			display: block;
+			display: flex;
 		}
 	}
 </style>
