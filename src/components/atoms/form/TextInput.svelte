@@ -4,6 +4,7 @@
 	export let classList = '';
 
 	let id = Math.random().toString();
+	let h = 'h-14';
 </script>
 
 <div class="flex flex-col gap-1">
@@ -12,7 +13,7 @@
 	{/if}
 
 	<input
-		class="border border-gray-300 bg-white rounded-lg outline-none p-4 text-base focus:ring-1 focus:ring-blue-500 focus:border-blue-500 {classList}"
+		class="border border-gray-300 bg-white rounded-lg outline-none {h} px-4 py-2 text-base focus:ring-1 focus:ring-blue-500 focus:border-blue-500 {classList}"
 		{id}
 		type="text"
 		{placeholder}

@@ -4,7 +4,7 @@
 	let modalEl: HTMLElement;
 	let innerEl: HTMLElement;
 
-	let open = false;
+	export let open = false;
 	const toggle = () => {
 		open = !open;
 	};
