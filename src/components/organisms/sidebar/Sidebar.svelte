@@ -6,6 +6,7 @@
 	import SunIcon from '@components/atoms/icons/SunIcon.svelte';
 	import AddNewMenuModal from '@components/organisms/modals/AddNewMenuModal.svelte';
 	import SidebarMenuList from '@components/organisms/sidebar/SidebarMenuList.svelte';
+	import { useActiveSegment } from '@lib/useActiveSegment';
 	import type { Menu } from '@typed/menu';
 	import 'simplebar';
 	import 'simplebar/dist/simplebar.min.css';
@@ -30,6 +31,8 @@
 
 	// @Todo
 	// Fetch Menus data from server
+
+	let isEditorActive = useActiveSegment('editor');
 </script>
 
 <aside
@@ -85,13 +88,15 @@
 			<SidebarMenuList isSubmenu={false} {posts} />
 		</div>
 	</div>
-	<div class="border-t absolute h-[4.5rem] bg-white bottom-0 right-0 left-0 flex add-menu-button">
-		<AddNewMenuModal>
-			<svelte:fragment slot="trigger" let:toggle>
-				<SidebarAddNewMenu on:toggle={toggle} />
-			</svelte:fragment>
-		</AddNewMenuModal>
-	</div>
+	{#if $isEditorActive}
+		<div class="border-t absolute h-[4.5rem] bg-white bottom-0 right-0 left-0 flex add-menu-button">
+			<AddNewMenuModal>
+				<svelte:fragment slot="trigger" let:toggle>
+					<SidebarAddNewMenu on:toggle={toggle} />
+				</svelte:fragment>
+			</AddNewMenuModal>
+		</div>
+	{/if}
 	<!-- End of Content -->
 </aside>
 

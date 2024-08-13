@@ -2,9 +2,10 @@
 	import PlusIcon from '@components/atoms/icons/PlusIcon.svelte';
 	import HeaderLeftMenuListing from '@components/molecules/header/HeaderLeftMenuListing.svelte';
 	import AddNewPageModal from '@components/organisms/modals/AddNewPageModal.svelte';
+	import { useActiveSegment } from '@lib/useActiveSegment';
 	import type { Menu } from '@typed/menu';
 	import Sortable from 'sortablejs';
-	import { onMount } from 'svelte';
+	import { onDestroy, onMount } from 'svelte';
 
 	export let items: Menu[] = [];
 
@@ -14,54 +15,63 @@
 	let sortable: Sortable;
 	let isLoaded: boolean = false;
 
+	let isEditorActive = useActiveSegment('editor');
+
 	onMount(() => {
-		let currentMoveRelatedEl: HTMLElement | null = null;
-		sortable = Sortable.create(sortableEl, {
-			animation: 150,
-			onStart: (e) => {
-				const item = e.item;
-				item.classList.add('dragging');
-			},
-			onEnd: (e) => {
-				const item = e.item;
-				item.classList.remove('dragging');
-				const target = e.target;
-				const listActiveWithBorder = target.querySelectorAll(
-					'li.will-insert-after, li.will-insert-before'
-				)[0];
+		isEditorActive.subscribe((isEditor) => {
+			if (!isEditor) return;
+			let currentMoveRelatedEl: HTMLElement | null = null;
+			sortable = Sortable.create(sortableEl, {
+				animation: 150,
+				onStart: (e) => {
+					const item = e.item;
+					item.classList.add('dragging');
+				},
+				onEnd: (e) => {
+					const item = e.item;
+					item.classList.remove('dragging');
+					const target = e.target;
+					const listActiveWithBorder = target.querySelectorAll(
+						'li.will-insert-after, li.will-insert-before'
+					)[0];
 
-				if (listActiveWithBorder) {
-					listActiveWithBorder.classList.remove('will-insert-after');
-					listActiveWithBorder.classList.remove('will-insert-before');
+					if (listActiveWithBorder) {
+						listActiveWithBorder.classList.remove('will-insert-after');
+						listActiveWithBorder.classList.remove('will-insert-before');
+					}
+				},
+				onMove: (e) => {
+					const willInsertAfter = e.willInsertAfter;
+					const relatedEl = e.related as HTMLElement;
+
+					// Remove class 'will-insert-after' and 'will-insert-before'
+					// from the 'currentMoveRelatedEl'
+					if (currentMoveRelatedEl) {
+						currentMoveRelatedEl.classList.remove('will-insert-after');
+						currentMoveRelatedEl.classList.remove('will-insert-before');
+					}
+
+					// Add class 'will-insert-after' and 'will-insert-before'
+					// depending on the 'willInsertAfter'
+					if (willInsertAfter) {
+						relatedEl.classList.add('will-insert-after');
+						relatedEl.classList.remove('will-insert-before');
+					} else {
+						relatedEl.classList.remove('will-insert-after');
+						relatedEl.classList.add('will-insert-before');
+					}
+
+					// Set the 'currentMoveRelatedEl' to the 'relatedEl'
+					currentMoveRelatedEl = relatedEl;
 				}
-			},
-			onMove: (e) => {
-				const willInsertAfter = e.willInsertAfter;
-				const relatedEl = e.related as HTMLElement;
-
-				// Remove class 'will-insert-after' and 'will-insert-before'
-				// from the 'currentMoveRelatedEl'
-				if (currentMoveRelatedEl) {
-					currentMoveRelatedEl.classList.remove('will-insert-after');
-					currentMoveRelatedEl.classList.remove('will-insert-before');
-				}
-
-				// Add class 'will-insert-after' and 'will-insert-before'
-				// depending on the 'willInsertAfter'
-				if (willInsertAfter) {
-					relatedEl.classList.add('will-insert-after');
-					relatedEl.classList.remove('will-insert-before');
-				} else {
-					relatedEl.classList.remove('will-insert-after');
-					relatedEl.classList.add('will-insert-before');
-				}
-
-				// Set the 'currentMoveRelatedEl' to the 'relatedEl'
-				currentMoveRelatedEl = relatedEl;
-			}
+			});
 		});
 
 		isLoaded = true;
+	});
+
+	onDestroy(() => {
+		sortable?.destroy();
 	});
 </script>
 

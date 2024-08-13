@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import SidebarMenuListing from '@components/molecules/sidebarMenuListing/SidebarMenuListing.svelte';
+	import { useActiveSegment } from '@lib/useActiveSegment';
 	import type { Menu } from '@typed/menu';
 	import type { Params } from '@typed/page';
 	import Sortable from 'sortablejs';
@@ -17,97 +18,102 @@
 
 	let isLoaded: boolean = false;
 
+	let segment = useActiveSegment('editor');
+
 	let instance: Sortable;
 	onMount(() => {
-		let currentMoveRelatedEl: HTMLElement | null = null;
-		let options: Sortable.Options = {};
-		if (isSubmenu) {
-			options = {
-				onRemove: (e) => {
-					const targetEl = e.target;
-					const targetRect = targetEl.getBoundingClientRect();
+		segment.subscribe((value) => {
+			if (!value) return;
+			let currentMoveRelatedEl: HTMLElement | null = null;
+			let options: Sortable.Options = {};
+			if (isSubmenu) {
+				options = {
+					onRemove: (e) => {
+						const targetEl = e.target;
+						const targetRect = targetEl.getBoundingClientRect();
 
-					const containerEl = targetEl.parentElement;
+						const containerEl = targetEl.parentElement;
 
-					containerEl?.style.setProperty('--offset', `${targetRect.height}px`);
+						containerEl?.style.setProperty('--offset', `${targetRect.height}px`);
+					},
+					onAdd: (e) => {
+						const targetEl = e.target;
+						const targetRect = targetEl.getBoundingClientRect();
+						const itemEl = e.item;
+						const itemAnchorEl = itemEl.querySelector('a');
+						const itemAnchorElContainPL = itemAnchorEl?.classList.contains('pl-6');
+						if (!itemAnchorElContainPL) {
+							itemAnchorEl?.classList.add('pl-6');
+						}
+
+						const containerEl = targetEl.parentElement;
+
+						containerEl?.style.setProperty('--offset', `${targetRect.height}px`);
+					}
+				};
+			}
+
+			if (!isSubmenu) {
+				options = {
+					...options,
+					onAdd: (e) => {
+						// Handle if children of submenu is added to the root
+						const item = e.item;
+						const itemAnchor = item.querySelector('a');
+						const itemAnchorContainPL = itemAnchor?.classList.contains('pl-6');
+
+						if (itemAnchorContainPL) itemAnchor?.classList.remove('pl-6');
+					}
+				};
+			}
+
+			instance = Sortable.create(sortableEl, {
+				group: 'nested',
+				animation: 150,
+				onStart: (e) => {
+					const item = e.item;
+					item.classList.toggle('dragging');
 				},
-				onAdd: (e) => {
-					const targetEl = e.target;
-					const targetRect = targetEl.getBoundingClientRect();
-					const itemEl = e.item;
-					const itemAnchorEl = itemEl.querySelector('a');
-					const itemAnchorElContainPL = itemAnchorEl?.classList.contains('pl-6');
-					if (!itemAnchorElContainPL) {
-						itemAnchorEl?.classList.add('pl-6');
+				onEnd: (e) => {
+					const item = e.item;
+
+					item.classList.remove('dragging');
+					const target = e.target;
+					const listActiveWithBorder = document.querySelectorAll(
+						'li.will-insert-after, li.will-insert-before'
+					)[0];
+
+					if (listActiveWithBorder) {
+						listActiveWithBorder.classList.remove('will-insert-after');
+						listActiveWithBorder.classList.remove('will-insert-before');
+					}
+				},
+				onMove: (e) => {
+					const willInsertAfter = e.willInsertAfter;
+					const relatedEl = e.related as HTMLElement;
+
+					// Remove class 'will-insert-after' and 'will-insert-before'
+					// from the 'currentMoveRelatedEl'
+					if (currentMoveRelatedEl) {
+						currentMoveRelatedEl.classList.remove('will-insert-after');
+						currentMoveRelatedEl.classList.remove('will-insert-before');
 					}
 
-					const containerEl = targetEl.parentElement;
+					// Add class 'will-insert-after' and 'will-insert-before'
+					// depending on the 'willInsertAfter'
+					if (willInsertAfter) {
+						relatedEl.classList.add('will-insert-after');
+						relatedEl.classList.remove('will-insert-before');
+					} else {
+						relatedEl.classList.remove('will-insert-after');
+						relatedEl.classList.add('will-insert-before');
+					}
 
-					containerEl?.style.setProperty('--offset', `${targetRect.height}px`);
-				}
-			};
-		}
-
-		if (!isSubmenu) {
-			options = {
-				...options,
-				onAdd: (e) => {
-					// Handle if children of submenu is added to the root
-					const item = e.item;
-					const itemAnchor = item.querySelector('a');
-					const itemAnchorContainPL = itemAnchor?.classList.contains('pl-6');
-
-					if (itemAnchorContainPL) itemAnchor?.classList.remove('pl-6');
-				}
-			};
-		}
-
-		instance = Sortable.create(sortableEl, {
-			group: 'nested',
-			animation: 150,
-			onStart: (e) => {
-				const item = e.item;
-				item.classList.toggle('dragging');
-			},
-			onEnd: (e) => {
-				const item = e.item;
-
-				item.classList.remove('dragging');
-				const target = e.target;
-				const listActiveWithBorder = document.querySelectorAll(
-					'li.will-insert-after, li.will-insert-before'
-				)[0];
-
-				if (listActiveWithBorder) {
-					listActiveWithBorder.classList.remove('will-insert-after');
-					listActiveWithBorder.classList.remove('will-insert-before');
-				}
-			},
-			onMove: (e) => {
-				const willInsertAfter = e.willInsertAfter;
-				const relatedEl = e.related as HTMLElement;
-
-				// Remove class 'will-insert-after' and 'will-insert-before'
-				// from the 'currentMoveRelatedEl'
-				if (currentMoveRelatedEl) {
-					currentMoveRelatedEl.classList.remove('will-insert-after');
-					currentMoveRelatedEl.classList.remove('will-insert-before');
-				}
-
-				// Add class 'will-insert-after' and 'will-insert-before'
-				// depending on the 'willInsertAfter'
-				if (willInsertAfter) {
-					relatedEl.classList.add('will-insert-after');
-					relatedEl.classList.remove('will-insert-before');
-				} else {
-					relatedEl.classList.remove('will-insert-after');
-					relatedEl.classList.add('will-insert-before');
-				}
-
-				// Set the 'currentMoveRelatedEl' to the 'relatedEl'
-				currentMoveRelatedEl = relatedEl;
-			},
-			...options
+					// Set the 'currentMoveRelatedEl' to the 'relatedEl'
+					currentMoveRelatedEl = relatedEl;
+				},
+				...options
+			});
 		});
 
 		isLoaded = true;
