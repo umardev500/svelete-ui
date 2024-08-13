@@ -19,7 +19,7 @@
 </script>
 
 <main class="px-6 flex">
-	<div class="w-full mr-[250px]">
+	<div class="w-full lg:mr-[250px]">
 		<div class="w-full">
 			<!-- Breadcrumb -->
 			<div class="mt-6">
