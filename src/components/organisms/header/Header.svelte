@@ -65,11 +65,11 @@
 	header {
 		font-family: 'Roboto';
 		left: 0rem;
+		right: 0;
 		transition: left var(--margin-transition-duration) var(--margin-timing-function);
 		z-index: 1050;
 		@media screen and (min-width: 1024px) {
 			left: 4.5rem;
-			right: 0;
 
 			&.show {
 				left: 22.125rem;
