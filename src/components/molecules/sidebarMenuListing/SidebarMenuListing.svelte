@@ -122,7 +122,7 @@
 			<PenIcon classList="!size-5 fill-gray-900" />
 		</button>
 		<DeleteConfirm
-			text="Are you sure you want to delete this version?"
+			text="Are you sure you want to delete this page?"
 			subText="This action cannot be undone."
 			on:confirm={confirmDeleting}
 		>
