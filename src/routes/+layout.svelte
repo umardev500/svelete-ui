@@ -55,7 +55,7 @@
 		height: 100vh;
 		background-color: rgba(0, 0, 0, 0);
 		pointer-events: none;
-		z-index: 10;
+		z-index: 60;
 		transition: background-color var(--margin-transition-duration) var(--margin-timing-function);
 
 		&.show {

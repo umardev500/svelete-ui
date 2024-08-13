@@ -4,6 +4,8 @@
 	import ListIcon from '@components/atoms/icons/ListIcon.svelte';
 	import HeaderMenuLeftList from '@components/organisms/header/HeaderMenuLeftList.svelte';
 	import HeaderRightMenuList from '@components/organisms/header/HeaderRightMenuList.svelte';
+	import ModalHost from '@components/organisms/modal/ModalHost.svelte';
+	import Search from '@components/organisms/search/Search.svelte';
 	import type { Menu } from '@typed/menu';
 	import { createEventDispatcher, onDestroy } from 'svelte';
 	import { leftMenuStore } from '../../../stores/leftMenu';
@@ -42,9 +44,19 @@
 			</div>
 
 			<div class="flex items-center gap-2">
-				<button>
-					<SearchIcon />
-				</button>
+				<ModalHost>
+					<svelte:fragment slot="trigger" let:toggle>
+						<button class="flex" on:click={toggle}>
+							<SearchIcon classList="!size-5" />
+						</button>
+					</svelte:fragment>
+
+					<svelte:fragment slot="inner" let:toggle>
+						<div class="bg-white rounded-lg overflow-hidden w-full lg:w-[447px] mx-auto p-4">
+							<Search />
+						</div>
+					</svelte:fragment>
+				</ModalHost>
 				<button on:click={toggleMobileNav}>
 					<MoreIcon />
 				</button>
@@ -67,7 +79,7 @@
 		left: 0rem;
 		right: 0;
 		transition: left var(--margin-transition-duration) var(--margin-timing-function);
-		z-index: 1050;
+		z-index: 50;
 		@media screen and (min-width: 1024px) {
 			left: 4.5rem;
 

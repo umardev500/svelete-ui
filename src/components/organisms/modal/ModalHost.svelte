@@ -3,7 +3,6 @@
 	import { portal } from 'svelte-portal';
 	let modalEl: HTMLElement;
 	let innerEl: HTMLElement;
-	export let centerXY: boolean = false;
 
 	export let open = false;
 	const toggle = () => {
@@ -28,7 +27,7 @@
 		? 'show'
 		: ''} fixed top-0 h-full right-0 bottom-0 left-0 px-4 lg:px-6 py-4 lg:py-6"
 >
-	<div class="mx-auto w-auto h-auto" bind:this={innerEl}>
+	<div class="mx-auto w-full lg:w-auto h-auto" bind:this={innerEl}>
 		<slot name="inner" {toggle}></slot>
 	</div>
 </div>
