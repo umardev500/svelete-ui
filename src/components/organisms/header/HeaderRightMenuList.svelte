@@ -7,6 +7,7 @@
 	import PlusIcon from '@components/atoms/icons/PlusIcon.svelte';
 	import SunIcon from '@components/atoms/icons/SunIcon.svelte';
 	import DropdownMenu from '@components/molecules/dropdown/DropdownMenu.svelte';
+	import DeleteConfirm from '@components/organisms/modals/DeleteConfirm.svelte';
 	import Sortable from 'sortablejs';
 	import { onDestroy, onMount } from 'svelte';
 
@@ -24,6 +25,11 @@
 	onDestroy(() => {
 		sortableInstance?.destroy();
 	});
+
+	const confirmDeleting = (e: CustomEvent<() => void>) => {
+		console.log('do deleting');
+		e.detail(); // toggle modal
+	};
 </script>
 
 <ul class="flex items-center gap-4">
@@ -86,9 +92,17 @@
 							<button class="">
 								<PenIcon classList="!size-5 fill-current" />
 							</button>
-							<button class="">
-								<DeleteIcon classList="!size-5 fill-red-500" />
-							</button>
+							<DeleteConfirm
+								text="Are you sure you want to delete this version?"
+								subText="This action cannot be undone."
+								on:confirm={confirmDeleting}
+							>
+								<svelte:fragment slot="trigger" let:toggle>
+									<button class="" on:click={toggle}>
+										<DeleteIcon classList="!size-5 fill-red-500" />
+									</button>
+								</svelte:fragment>
+							</DeleteConfirm>
 						</div>
 					</div>
 				{/each}
