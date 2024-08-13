@@ -168,7 +168,7 @@
 						illum debitis sit veritatis maxime. Maiores beatae facere quos, blanditiis, mollitia reiciendis
 						aspernatur tempora esse assumenda libero voluptates!
 					</div>
-					<p class="mt-4 text-gray-800">
+					<p class="mt-6 text-gray-800">
 						Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus sed voluptates
 						minima illum debitis sit veritatis maxime. Maiores beatae facere quos, blanditiis,
 						mollitia reiciendis aspernatur tempora esse assumenda libero voluptates!
