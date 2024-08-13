@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { page } from '$app/stores';
 	import AngleRight from '@components/atoms/icons/AngleRight.svelte';
 	import DeleteIcon from '@components/atoms/icons/DeleteIcon.svelte';
 	import ListIcon from '@components/atoms/icons/ListIcon.svelte';
@@ -97,13 +98,25 @@
 		console.log('do deleting');
 		e.detail(); // toggle modal
 	};
+
+	let isActive = false;
+	$: if (!childrenOfSubMenu && !isMobileNav) {
+		const parameters = $page.params;
+		const slug = parameters.slug;
+		console.log(slug);
+		if (menu.submenu !== undefined) {
+			isActive = menu.submenu.some((sub) => sub.slug === slug);
+		}
+	}
 </script>
 
 <li class="sortable-item relative {childrenOfSubMenu ? 'group' : ''}" bind:this={thisElement}>
 	<a
 		class="{classes.join(
 			' '
-		)} item py-2.5 flex z-10 relative text-base rounded-lg px-4 hover:bg-gray-50 items-center justify-between"
+		)} item py-2.5 flex z-10 relative text-base rounded-lg px-4 hover:bg-gray-50 items-center justify-between {isActive
+			? 'bg-gray-50'
+			: ''}"
 		on:click={handleClick}
 		href="/post/{category}/{menu.slug}"
 	>
