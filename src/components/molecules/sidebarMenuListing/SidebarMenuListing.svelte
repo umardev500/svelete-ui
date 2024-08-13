@@ -3,6 +3,7 @@
 	import DeleteIcon from '@components/atoms/icons/DeleteIcon.svelte';
 	import ListIcon from '@components/atoms/icons/ListIcon.svelte';
 	import PenIcon from '@components/atoms/icons/PenIcon.svelte';
+	import DeleteConfirm from '@components/organisms/modals/DeleteConfirm.svelte';
 	import SidebarMenuList from '@components/organisms/sidebar/SidebarMenuList.svelte';
 	import { langStore } from '@store/lang';
 	import type { Menu } from '@typed/menu';
@@ -69,31 +70,11 @@
 		loaded = true;
 	});
 
-	const toggleOpacityActions = (e: Event) => {
-		const target = e.target as HTMLElement;
-		const parentOfMenu = target.closest('ul');
-		const parentOfMenuIsSubmenu = parentOfMenu?.classList.contains('border-l'); // border-l indicate that is a submenu
-
-		if (!parentOfMenuIsSubmenu) return;
-
-		const isAnchor = target.tagName === 'A';
-		let parentEl: HTMLElement | null = target;
-		if (isAnchor) {
-			parentEl = target.closest('li');
-		}
-
-		if (parentEl === null) return;
-
-		const actionsEl = parentEl.querySelector('.actions');
-		actionsEl?.classList.toggle('opacity-0');
-	};
-
 	let thisElement: HTMLElement | null = null;
 	const selectable = menu.selectable;
 
 	let classes: string[] = [];
 	if (isMobileNav) {
-		// (menu.submenu);
 		if (isCategoryMatched) {
 			classes.push('text-gray-800');
 			classes.push('font-medium');
@@ -110,12 +91,15 @@
 			classes.push('font-medium');
 		}
 	}
+
+	const confirmDeleting = (e: CustomEvent<() => void>) => {
+		console.log('do deleting');
+		e.detail(); // toggle modal
+	};
 </script>
 
-<li class="sortable-item relative" bind:this={thisElement}>
+<li class="sortable-item relative {childrenOfSubMenu ? 'group' : ''}" bind:this={thisElement}>
 	<a
-		on:mouseenter={toggleOpacityActions}
-		on:mouseleave={toggleOpacityActions}
 		class="{classes.join(
 			' '
 		)} item py-2.5 flex z-10 relative text-base rounded-lg px-4 hover:bg-gray-50 items-center justify-between"
@@ -132,14 +116,22 @@
 	</a>
 	<!-- Hover action -->
 	<div
-		class="absolute z-10 opacity-0 pointer-events-none group-hover:pointer-events-auto h-full flex items-center gap-2 px-2 right-0 actions"
+		class="absolute z-10 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto h-full flex items-center gap-2 px-2 right-0 actions"
 	>
 		<button>
 			<PenIcon classList="!size-5 fill-gray-900" />
 		</button>
-		<button>
-			<DeleteIcon classList="!size-5 fill-red-500" />
-		</button>
+		<DeleteConfirm
+			text="Are you sure you want to delete this version?"
+			subText="This action cannot be undone."
+			on:confirm={confirmDeleting}
+		>
+			<svelte:fragment slot="trigger" let:toggle>
+				<button on:click={toggle}>
+					<DeleteIcon classList="!size-5 fill-red-500" />
+				</button>
+			</svelte:fragment>
+		</DeleteConfirm>
 	</div>
 
 	{#if menu.submenu}
