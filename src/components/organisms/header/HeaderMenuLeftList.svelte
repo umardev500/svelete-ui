@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import PlusIcon from '@components/atoms/icons/PlusIcon.svelte';
 	import HeaderLeftMenuListing from '@components/molecules/header/HeaderLeftMenuListing.svelte';
+	import AddNewPageModal from '@components/organisms/modals/AddNewPageModal.svelte';
 	import type { Menu } from '@typed/menu';
 	import Sortable from 'sortablejs';
 	import { onMount } from 'svelte';
@@ -72,9 +72,8 @@
 	{/each}
 
 	<!-- Extend the left menu -->
-	<button>
-		<PlusIcon classList="text-green-600" />
-	</button>
+
+	<AddNewPageModal />
 </ul>
 
 {#if isLoaded}
