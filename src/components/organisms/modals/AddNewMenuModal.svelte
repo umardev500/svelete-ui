@@ -14,14 +14,14 @@
 	];
 </script>
 
-<ModalHost open>
+<ModalHost>
 	<svelte:fragment slot="trigger" let:toggle>
 		<SidebarAddNewMenu on:toggle={toggle} />
 	</svelte:fragment>
 
-	<svelte:fragment slot="inner">
+	<svelte:fragment slot="inner" let:toggle>
 		<div class="bg-white rounded-lg overflow-hidden lg:w-[447px] mx-auto">
-			<ModalHeader title="Add a New Menu" />
+			<ModalHeader on:toggle={toggle} title="Add a New Menu" />
 			<div class="py-6 px-6">
 				<SelectInput classList="mb-4" placeholder="Parent Menu" options={parents} />
 				<TextInput classList="mb-4" label="Name" placeholder="Enter the page name" />
