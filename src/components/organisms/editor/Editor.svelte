@@ -13,7 +13,7 @@
 
 	const carta = new Carta({
 		sanitizer: false,
-		theme: 'vitesse-light',
+		theme: 'everforest-light',
 		extensions: [
 			attachment({
 				async upload() {
@@ -54,9 +54,9 @@ func add(a, b) {
 <div class="border md-editor-container rounded-2xl overflow-hidden mt-[5.5rem]">
 	<Tab
 		tabs={[
-			{ name: 'Editor', active: false },
+			{ name: 'Editor', active: true },
 			{ name: 'HTML', active: false },
-			{ name: 'Preview', active: true }
+			{ name: 'Preview', active: false }
 		]}
 	>
 		<svelte:fragment slot="tab" let:tabs let:toggle let:activeTab>
