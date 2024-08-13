@@ -102,11 +102,19 @@
 								{/if}
 
 								{#if activeTab === 1}
-									<div></div>
+									<div class="py-6 px-6">
+										<div class="font-firaCode">
+											<span class="text-green-800">yarn</span> add tailwindcss@latest
+										</div>
+									</div>
 								{/if}
 
 								{#if activeTab === 2}
-									<div></div>
+									<div class="py-6 px-6">
+										<div class="font-firaCode">
+											<span class="text-green-800">pnpm</span> add tailwindcss@latest
+										</div>
+									</div>
 								{/if}
 							</svelte:fragment>
 						</Tab>
