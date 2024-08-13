@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { page } from '$app/stores';
 	import PlusIcon from '@components/atoms/icons/PlusIcon.svelte';
 	import HeaderLeftMenuListing from '@components/molecules/header/HeaderLeftMenuListing.svelte';
 	import AddNewPageModal from '@components/organisms/modals/AddNewPageModal.svelte';
@@ -9,7 +8,6 @@
 
 	export let items: Menu[] = [];
 
-	$: currentRouteId = $page.url.pathname; // Current route id
 	const prefix = '/post'; // Prefix for links
 
 	let sortableEl: HTMLElement;
@@ -69,7 +67,7 @@
 
 <ul class="flex items-center h-full header-left-menu" bind:this={sortableEl}>
 	{#each items as item (item.title)}
-		<HeaderLeftMenuListing {item} {prefix} {currentRouteId} />
+		<HeaderLeftMenuListing {item} {prefix} />
 	{/each}
 
 	<!-- Extend the left menu -->

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { page } from '$app/stores';
 	import EditIcon from '@components/atoms/icons/custom/EditIcon.svelte';
 	import MoreIcon from '@components/atoms/icons/custom/MoreIcon.svelte';
 	import DeleteIcon from '@components/atoms/icons/DeleteIcon.svelte';
@@ -7,10 +8,12 @@
 	import AddNewPageModal from '@components/organisms/modals/AddNewPageModal.svelte';
 	import DeleteConfirm from '@components/organisms/modals/DeleteConfirm.svelte';
 	import type { Menu } from '@typed/menu';
+	import type { Params } from '@typed/page';
 
 	export let item: Menu;
 	export let prefix: string;
-	export let currentRouteId: string;
+	$: params = $page.params as Params;
+	$: isMatchedRoute = params.category === item.slug;
 
 	const confirmDeleting = (e: CustomEvent<() => void>) => {
 		console.log('do deleting');
@@ -23,7 +26,7 @@
 		<svelte:fragment slot="trigger" let:toggleDropdown>
 			<div class="flex h-full">
 				<a
-					class={`item text-gray-500 text-base relative h-full flex items-center px-2 ${currentRouteId === prefix + item.slug ? 'font-medium' : ''}`}
+					class={`item text-gray-500 text-base relative h-full flex items-center px-2 ${isMatchedRoute ? 'font-medium text-gray-800' : ''}`}
 					href="{prefix}/{item.slug}"
 				>
 					<ListIcon classList="!size-4 absolute opacity-0 dragging-icon" />
