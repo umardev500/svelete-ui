@@ -51,7 +51,7 @@ func add(a, b) {
 `;
 </script>
 
-<div class="border md-editor-container rounded-2xl overflow-hidden">
+<div class="border md-editor-container rounded-2xl overflow-hidden mt-[5.5rem]">
 	<Tab
 		tabs={[
 			{ name: 'Editor', active: false },
