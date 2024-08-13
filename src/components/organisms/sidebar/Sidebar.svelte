@@ -5,7 +5,7 @@
 	import ListIcon from '@components/atoms/icons/ListIcon.svelte';
 	import SunIcon from '@components/atoms/icons/SunIcon.svelte';
 	import SidebarMenuList from '@components/organisms/sidebar/SidebarMenuList.svelte';
-	import type { Post } from '@typed/post';
+	import type { Menu } from '@typed/menu';
 	import 'simplebar';
 	import 'simplebar/dist/simplebar.min.css';
 	import { createEventDispatcher, onDestroy } from 'svelte';
@@ -18,7 +18,7 @@
 		dispatch('toggle');
 	};
 
-	let posts: Post[] = [];
+	let posts: Menu[] = [];
 	const unsubscribe = postStore.subscribe((data) => {
 		posts = data;
 	});
