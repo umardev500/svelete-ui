@@ -82,13 +82,15 @@
 
 	<!-- Extend the left menu -->
 
-	<AddNewPageModal>
-		<svelte:fragment slot="trigger" let:toggle>
-			<button on:click={toggle}>
-				<PlusIcon classList="text-green-600" />
-			</button>
-		</svelte:fragment>
-	</AddNewPageModal>
+	{#if $isEditorActive}
+		<AddNewPageModal>
+			<svelte:fragment slot="trigger" let:toggle>
+				<button on:click={toggle}>
+					<PlusIcon classList="text-green-600" />
+				</button>
+			</svelte:fragment>
+		</AddNewPageModal>
+	{/if}
 </ul>
 
 {#if isLoaded}

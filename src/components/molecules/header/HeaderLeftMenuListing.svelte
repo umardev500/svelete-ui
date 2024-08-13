@@ -7,6 +7,7 @@
 	import DropdownMenu from '@components/molecules/dropdown/DropdownMenu.svelte';
 	import AddNewPageModal from '@components/organisms/modals/AddNewPageModal.svelte';
 	import DeleteConfirm from '@components/organisms/modals/DeleteConfirm.svelte';
+	import { useActiveSegment } from '@lib/useActiveSegment';
 	import type { Menu } from '@typed/menu';
 	import type { Params } from '@typed/page';
 
@@ -19,6 +20,8 @@
 		console.log('do deleting');
 		e.detail(); // toggle modal
 	};
+
+	let isEditor = useActiveSegment('editor');
 </script>
 
 <li class="h-full group flex relative">
@@ -26,15 +29,17 @@
 		<svelte:fragment slot="trigger" let:toggleDropdown>
 			<div class="flex h-full">
 				<a
-					class={`item text-gray-500 text-base relative h-full flex items-center px-2 ${isMatchedRoute ? 'font-medium text-gray-800' : ''}`}
+					class={`item text-gray-500 text-base relative h-full flex items-center ${$isEditor ? 'px-2' : 'px-4'} ${isMatchedRoute ? 'font-medium text-gray-800' : ''}`}
 					href="{prefix}/{item.slug}"
 				>
 					<ListIcon classList="!size-4 absolute opacity-0 dragging-icon" />
 					{item.title}
 				</a>
-				<button class="opacity-0 group-hover:opacity-100" on:click={toggleDropdown}>
-					<MoreIcon classList="rotate-90" />
-				</button>
+				{#if $isEditor}
+					<button class="opacity-0 group-hover:opacity-100" on:click={toggleDropdown}>
+						<MoreIcon classList="rotate-90" />
+					</button>
+				{/if}
 			</div>
 		</svelte:fragment>
 
