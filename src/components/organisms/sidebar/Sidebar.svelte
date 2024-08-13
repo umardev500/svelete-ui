@@ -36,7 +36,7 @@
 </script>
 
 <aside
-	class="sidebar {sidebarOpen ? 'show' : ''} bottom-0 top-0 left-0 pb-6 border-r bg-white z-[70]"
+	class="sidebar {sidebarOpen ? 'show' : ''} bottom-0 top-0 left-0 pb-6 border-r bg-white z-50"
 >
 	<div class="flex items-center border-b h-16 px-4 heading relative">
 		<!-- Top Desktop -->

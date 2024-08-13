@@ -30,7 +30,7 @@
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <div
 	on:click={sidebarOpen ? toggleSidebar : toggleMobileNav}
-	class="backdrop {sidebarOpen || mobileNavOpen ? 'show' : ''}"
+	class="backdrop {sidebarOpen || mobileNavOpen ? 'show' : ''} z-40"
 ></div>
 
 <Header {sidebarOpen} on:toggleMobileNav={toggleMobileNav} on:toggle={toggleSidebar} />
@@ -55,7 +55,6 @@
 		height: 100vh;
 		background-color: rgba(0, 0, 0, 0);
 		pointer-events: none;
-		z-index: 60;
 		transition: background-color var(--margin-transition-duration) var(--margin-timing-function);
 
 		&.show {

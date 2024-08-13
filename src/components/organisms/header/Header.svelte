@@ -31,7 +31,7 @@
 </script>
 
 <header
-	class="bg-white fixed top-0 {sidebarOpen ? 'show' : ''}"
+	class="bg-white fixed top-0 {sidebarOpen ? 'show' : ''} lg:z-50"
 	style="--sidebar-width: {sidebarOpen ? '22.125rem' : '4.5rem'}"
 >
 	<nav class="px-4 h-16 border-b relative">
@@ -79,7 +79,6 @@
 		left: 0rem;
 		right: 0;
 		transition: left var(--margin-transition-duration) var(--margin-timing-function);
-		z-index: 50;
 		@media screen and (min-width: 1024px) {
 			left: 4.5rem;
 
