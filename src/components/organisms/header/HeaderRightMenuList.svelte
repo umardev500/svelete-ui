@@ -94,9 +94,13 @@
 						</a>
 						<!-- Right icon for editable menu -->
 						<div class="hidden group-hover:flex items-center justify-center gap-1">
-							<button class="">
-								<PenIcon classList="!size-5 fill-current" />
-							</button>
+							<AddNewVersionModal>
+								<svelte:fragment slot="trigger" let:toggle>
+									<button class="" on:click={toggle}>
+										<PenIcon classList="!size-5 fill-current" />
+									</button>
+								</svelte:fragment>
+							</AddNewVersionModal>
 							<DeleteConfirm
 								text="Are you sure you want to delete this version?"
 								subText="This action cannot be undone."

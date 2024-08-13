@@ -66,6 +66,7 @@
 		font-family: 'Roboto';
 		left: 0rem;
 		transition: left var(--margin-transition-duration) var(--margin-timing-function);
+		z-index: 1050;
 		@media screen and (min-width: 1024px) {
 			left: 4.5rem;
 			right: 0;
