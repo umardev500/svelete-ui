@@ -49,6 +49,7 @@
 		"@cartamd/plugin-math": "^4.1.0",
 		"@cartamd/plugin-slash": "^4.0.2",
 		"@cartamd/plugin-tikz": "^4.1.8",
+		"@sveltejs/adapter-vercel": "^5.4.3",
 		"@types/highlight.js": "^10.1.0",
 		"@types/html": "^1.0.4",
 		"@types/marked": "^6.0.0",
