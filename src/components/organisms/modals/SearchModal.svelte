@@ -10,7 +10,7 @@
 	];
 </script>
 
-<ModalHost open>
+<ModalHost>
 	<svelte:fragment slot="trigger" let:toggle>
 		<button class="flex" on:click={toggle}>
 			<SearchIcon classList="!size-5" />
