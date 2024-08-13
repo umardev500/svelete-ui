@@ -16,7 +16,7 @@
 
 	<svelte:fragment slot="inner">
 		<div class="bg-white rounded-lg overflow-hidden lg:w-[447px] mx-auto">
-			<ModalHeader />
+			<ModalHeader title="Add New Page" />
 			<div class="py-6 px-6">
 				<TextInput classList="mb-4" label="Name" placeholder="Enter the page name" />
 				<TextInput classList="" label="Slug" placeholder="Enter the page slug" />
