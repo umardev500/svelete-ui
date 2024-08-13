@@ -70,7 +70,7 @@
 							tabs={[
 								{ name: 'npm', active: true },
 								{ name: 'yarn', active: false },
-								{ name: 'pnmp', active: false }
+								{ name: 'pnpm', active: false }
 							]}
 						>
 							<svelte:fragment slot="tab" let:tabs let:toggle let:activeTab>

@@ -103,7 +103,6 @@
 	$: if (!childrenOfSubMenu && !isMobileNav) {
 		const parameters = $page.params;
 		const slug = parameters.slug;
-		console.log(slug);
 		if (menu.submenu !== undefined) {
 			isActive = menu.submenu.some((sub) => sub.slug === slug);
 		}
