@@ -2,7 +2,7 @@
 	import { createEventDispatcher, onMount } from 'svelte';
 
 	const dispatch = createEventDispatcher();
-	let isOpen = false;
+	export let isOpen = false;
 	export let menuElement: HTMLElement | null = null;
 	let dropdownElement: HTMLElement | null = null;
 
