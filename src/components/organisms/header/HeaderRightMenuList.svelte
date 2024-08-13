@@ -8,6 +8,7 @@
 	import SunIcon from '@components/atoms/icons/SunIcon.svelte';
 	import DropdownMenu from '@components/molecules/dropdown/DropdownMenu.svelte';
 	import DeleteConfirm from '@components/organisms/modals/DeleteConfirm.svelte';
+	import SearchModal from '@components/organisms/modals/SearchModal.svelte';
 	import Sortable from 'sortablejs';
 	import { onDestroy, onMount } from 'svelte';
 
@@ -33,6 +34,9 @@
 </script>
 
 <ul class="flex items-center gap-4">
+	<li class="relative cursor-pointer">
+		<SearchModal />
+	</li>
 	<li class="relative cursor-pointer">
 		<button class="flex">
 			<SunIcon />
