@@ -78,7 +78,7 @@
 		</DropdownMenu>
 	</li>
 	<li class="relative">
-		<DropdownMenu bind:menuElement={versionSortableMenu}>
+		<DropdownMenu>
 			<!-- Trigger button -->
 			<svelte:fragment slot="trigger" let:toggleDropdown>
 				<button
@@ -92,38 +92,41 @@
 
 			<svelte:fragment slot="menu">
 				<div class="px-4 text-base pb-1 not-sortable">Versions</div>
-				{#each versions as version}
-					<div
-						class="flex mb-2 items-center group hover:bg-gray-50 rounded-md px-4 py-1 cursor-pointer"
-					>
-						<a class="text-base flex-1 flex items-center text-nowrap" href="/#">
-							{version}
-						</a>
-						<!-- Right icon for editable menu -->
-						{#if $isEditor}
-							<div class="hidden group-hover:flex items-center justify-center gap-1">
-								<AddNewVersionModal>
-									<svelte:fragment slot="trigger" let:toggle>
-										<button class="" on:click={toggle}>
-											<PenIcon classList="!size-5 fill-current" />
-										</button>
-									</svelte:fragment>
-								</AddNewVersionModal>
-								<DeleteConfirm
-									text="Are you sure you want to delete this version?"
-									subText="This action cannot be undone."
-									on:confirm={confirmDeleting}
-								>
-									<svelte:fragment slot="trigger" let:toggle>
-										<button class="" on:click={toggle}>
-											<DeleteIcon classList="!size-5 fill-red-500" />
-										</button>
-									</svelte:fragment>
-								</DeleteConfirm>
-							</div>
-						{/if}
-					</div>
-				{/each}
+				<div bind:this={versionSortableMenu}>
+					{#each versions as version}
+						<div
+							bind:this={versionSortableMenu}
+							class="flex mb-2 items-center group hover:bg-gray-50 rounded-md px-4 py-1 cursor-pointer"
+						>
+							<a class="text-base flex-1 flex items-center text-nowrap" href="/#">
+								{version}
+							</a>
+							<!-- Right icon for editable menu -->
+							{#if $isEditor}
+								<div class="hidden group-hover:flex items-center justify-center gap-1">
+									<AddNewVersionModal>
+										<svelte:fragment slot="trigger" let:toggle>
+											<button class="" on:click={toggle}>
+												<PenIcon classList="!size-5 fill-current" />
+											</button>
+										</svelte:fragment>
+									</AddNewVersionModal>
+									<DeleteConfirm
+										text="Are you sure you want to delete this version?"
+										subText="This action cannot be undone."
+										on:confirm={confirmDeleting}
+									>
+										<svelte:fragment slot="trigger" let:toggle>
+											<button class="" on:click={toggle}>
+												<DeleteIcon classList="!size-5 fill-red-500" />
+											</button>
+										</svelte:fragment>
+									</DeleteConfirm>
+								</div>
+							{/if}
+						</div>
+					{/each}
+				</div>
 				{#if $isEditor}
 					<div class="flex justify-center not-sortable">
 						<AddNewVersionModal>
