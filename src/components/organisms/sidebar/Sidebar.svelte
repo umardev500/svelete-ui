@@ -1,9 +1,9 @@
 <script lang="ts">
-	import SidebarAddNewMenu from '@components/atoms/button/SidebarAddNewMenu.svelte';
 	import ArrowLeft from '@components/atoms/icons/ArrowLeft.svelte';
 	import GithubIcon from '@components/atoms/icons/GithubIcon.svelte';
 	import ListIcon from '@components/atoms/icons/ListIcon.svelte';
 	import SunIcon from '@components/atoms/icons/SunIcon.svelte';
+	import AddNewMenuModal from '@components/organisms/modals/AddNewMenuModal.svelte';
 	import SidebarMenuList from '@components/organisms/sidebar/SidebarMenuList.svelte';
 	import type { Menu } from '@typed/menu';
 	import 'simplebar';
@@ -85,7 +85,7 @@
 		</div>
 	</div>
 	<div class="border-t absolute h-[4.5rem] bg-white bottom-0 right-0 left-0 flex add-menu-button">
-		<SidebarAddNewMenu />
+		<AddNewMenuModal />
 	</div>
 	<!-- End of Content -->
 </aside>
