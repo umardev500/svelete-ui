@@ -62,7 +62,7 @@
 		"marked": "^14.0.0",
 		"marked-highlight": "^2.1.4",
 		"pretty": "^2.0.0",
-		"sharp": "0.32.6",
+		"sharp": "^0.33.4",
 		"simplebar": "^6.2.7",
 		"simplemde": "^1.11.2",
 		"sortablejs": "^1.15.2",
