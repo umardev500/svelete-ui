@@ -4,6 +4,7 @@
 	import GithubIcon from '@components/atoms/icons/GithubIcon.svelte';
 	import LangIcon from '@components/atoms/icons/LangIcon.svelte';
 	import PenIcon from '@components/atoms/icons/PenIcon.svelte';
+	import PlusIcon from '@components/atoms/icons/PlusIcon.svelte';
 	import SunIcon from '@components/atoms/icons/SunIcon.svelte';
 	import DropdownMenu from '@components/molecules/dropdown/DropdownMenu.svelte';
 	import AddNewVersionModal from '@components/organisms/modals/AddNewVersionModal.svelte';
@@ -70,7 +71,7 @@
 		</DropdownMenu>
 	</li>
 	<li class="relative">
-		<DropdownMenu isOpen bind:menuElement={versionSortableMenu}>
+		<DropdownMenu bind:menuElement={versionSortableMenu}>
 			<!-- Trigger button -->
 			<svelte:fragment slot="trigger" let:toggleDropdown>
 				<button
@@ -111,7 +112,13 @@
 					</div>
 				{/each}
 				<div class="flex justify-center not-sortable">
-					<AddNewVersionModal />
+					<AddNewVersionModal>
+						<svelte:fragment slot="trigger" let:toggle>
+							<button on:click={toggle}>
+								<PlusIcon classList="fill-green-500 size-5" />
+							</button>
+						</svelte:fragment>
+					</AddNewVersionModal>
 				</div>
 			</svelte:fragment>
 		</DropdownMenu>

@@ -2,7 +2,6 @@
 	import ModalHeader from '@components/molecules/modal/ModalHeader.svelte';
 
 	import Button from '@components/atoms/button/Button.svelte';
-	import SidebarAddNewMenu from '@components/atoms/button/SidebarAddNewMenu.svelte';
 	import SelectInput from '@components/atoms/form/SelectInput.svelte';
 	import TextInput from '@components/atoms/form/TextInput.svelte';
 	import ModalHost from '../modal/ModalHost.svelte';
@@ -16,7 +15,7 @@
 
 <ModalHost>
 	<svelte:fragment slot="trigger" let:toggle>
-		<SidebarAddNewMenu on:toggle={toggle} />
+		<slot name="trigger" {toggle} />
 	</svelte:fragment>
 
 	<svelte:fragment slot="inner" let:toggle>

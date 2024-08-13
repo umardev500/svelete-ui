@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import PlusIcon from '@components/atoms/icons/PlusIcon.svelte';
 	import HeaderLeftMenuListing from '@components/molecules/header/HeaderLeftMenuListing.svelte';
 	import AddNewPageModal from '@components/organisms/modals/AddNewPageModal.svelte';
 	import type { Menu } from '@typed/menu';
@@ -73,7 +74,13 @@
 
 	<!-- Extend the left menu -->
 
-	<AddNewPageModal />
+	<AddNewPageModal>
+		<svelte:fragment slot="trigger" let:toggle>
+			<button on:click={toggle}>
+				<PlusIcon classList="text-green-600" />
+			</button>
+		</svelte:fragment>
+	</AddNewPageModal>
 </ul>
 
 {#if isLoaded}

@@ -3,15 +3,12 @@
 
 	import Button from '@components/atoms/button/Button.svelte';
 	import TextInput from '@components/atoms/form/TextInput.svelte';
-	import PlusIcon from '@components/atoms/icons/PlusIcon.svelte';
 	import ModalHost from '../modal/ModalHost.svelte';
 </script>
 
 <ModalHost>
 	<svelte:fragment slot="trigger" let:toggle>
-		<button on:click={toggle}>
-			<PlusIcon classList="text-green-600" />
-		</button>
+		<slot name="trigger" {toggle} />
 	</svelte:fragment>
 
 	<svelte:fragment slot="inner">

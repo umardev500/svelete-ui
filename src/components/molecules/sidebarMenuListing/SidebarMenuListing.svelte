@@ -3,6 +3,7 @@
 	import DeleteIcon from '@components/atoms/icons/DeleteIcon.svelte';
 	import ListIcon from '@components/atoms/icons/ListIcon.svelte';
 	import PenIcon from '@components/atoms/icons/PenIcon.svelte';
+	import AddNewMenuModal from '@components/organisms/modals/AddNewMenuModal.svelte';
 	import DeleteConfirm from '@components/organisms/modals/DeleteConfirm.svelte';
 	import SidebarMenuList from '@components/organisms/sidebar/SidebarMenuList.svelte';
 	import { langStore } from '@store/lang';
@@ -118,9 +119,13 @@
 	<div
 		class="absolute z-10 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto h-full flex items-center gap-2 px-2 right-0 actions"
 	>
-		<button>
-			<PenIcon classList="!size-5 fill-gray-900" />
-		</button>
+		<AddNewMenuModal>
+			<svelte:fragment slot="trigger" let:toggle>
+				<button on:click={toggle}>
+					<PenIcon classList="!size-5 fill-gray-900" />
+				</button>
+			</svelte:fragment>
+		</AddNewMenuModal>
 		<DeleteConfirm
 			text="Are you sure you want to delete this page?"
 			subText="This action cannot be undone."

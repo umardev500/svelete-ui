@@ -1,4 +1,5 @@
 <script lang="ts">
+	import SidebarAddNewMenu from '@components/atoms/button/SidebarAddNewMenu.svelte';
 	import ArrowLeft from '@components/atoms/icons/ArrowLeft.svelte';
 	import GithubIcon from '@components/atoms/icons/GithubIcon.svelte';
 	import ListIcon from '@components/atoms/icons/ListIcon.svelte';
@@ -85,7 +86,11 @@
 		</div>
 	</div>
 	<div class="border-t absolute h-[4.5rem] bg-white bottom-0 right-0 left-0 flex add-menu-button">
-		<AddNewMenuModal />
+		<AddNewMenuModal>
+			<svelte:fragment slot="trigger" let:toggle>
+				<SidebarAddNewMenu on:toggle={toggle} />
+			</svelte:fragment>
+		</AddNewMenuModal>
 	</div>
 	<!-- End of Content -->
 </aside>
