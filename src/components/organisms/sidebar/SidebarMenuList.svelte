@@ -74,7 +74,7 @@
 
 				item.classList.remove('dragging');
 				const target = e.target;
-				const listActiveWithBorder = target.querySelectorAll(
+				const listActiveWithBorder = document.querySelectorAll(
 					'li.will-insert-after, li.will-insert-before'
 				)[0];
 
