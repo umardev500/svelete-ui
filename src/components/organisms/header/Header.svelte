@@ -58,7 +58,7 @@
 					</svelte:fragment>
 				</ModalHost>
 				<button on:click={toggleMobileNav}>
-					<MoreIcon />
+					<MoreIcon classList="!size-8" />
 				</button>
 			</div>
 		</div>
