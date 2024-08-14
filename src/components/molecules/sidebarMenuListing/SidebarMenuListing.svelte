@@ -113,48 +113,50 @@
 </script>
 
 <li class="sortable-item relative {childrenOfSubMenu ? 'group' : ''}" bind:this={thisElement}>
-	<a
-		class="{classes.join(
-			' '
-		)} item py-2.5 flex z-10 relative text-base rounded-lg px-4 hover:bg-gray-50 items-center justify-between {isActive
-			? 'bg-gray-50'
-			: ''}"
-		on:click={handleClick}
-		href="/post/{category}/{menu.slug}"
-	>
-		<ListIcon classList="!size-4 absolute opacity-0 dragging-icon" />
-
-		<span>{menu.title}</span>
-
-		{#if menu.submenu}
-			<AngleRight classList="!size-5 angle {isOpen ? 'show' : ''}" />
-		{/if}
-	</a>
-	<!-- Hover action -->
-	{#if $isEditor}
-		<div
-			class="absolute z-10 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto h-full flex items-center gap-2 px-2 right-0 actions"
+	<div class="relative {childrenOfSubMenu ? '' : 'parent-hoverable'}">
+		<a
+			class="{classes.join(
+				' '
+			)} item py-2.5 flex z-10 relative text-base rounded-lg px-4 hover:bg-gray-50 items-center justify-between {isActive
+				? 'bg-gray-50'
+				: ''}"
+			on:click={handleClick}
+			href="/post/{category}/{menu.slug}"
 		>
-			<AddNewMenuModal title="Edit menu">
-				<svelte:fragment slot="trigger" let:toggle>
-					<button on:click={toggle}>
-						<PenIcon classList="!size-5 fill-gray-900" />
-					</button>
-				</svelte:fragment>
-			</AddNewMenuModal>
-			<DeleteConfirm
-				text="Are you sure you want to delete this page?"
-				subText="This action cannot be undone."
-				on:confirm={confirmDeleting}
+			<ListIcon classList="!size-4 absolute opacity-0 dragging-icon" />
+
+			<span>{menu.title}</span>
+
+			{#if menu.submenu}
+				<AngleRight classList="!size-5 angle {isOpen ? 'show' : ''}" />
+			{/if}
+		</a>
+		<!-- Hover action -->
+		{#if $isEditor}
+			<div
+				class="absolute z-10 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto h-full flex items-center gap-2 px-2 right-0 actions"
 			>
-				<svelte:fragment slot="trigger" let:toggle>
-					<button on:click={toggle}>
-						<DeleteIcon classList="!size-5 fill-red-500" />
-					</button>
-				</svelte:fragment>
-			</DeleteConfirm>
-		</div>
-	{/if}
+				<AddNewMenuModal title="Edit menu">
+					<svelte:fragment slot="trigger" let:toggle>
+						<button on:click={toggle}>
+							<PenIcon classList="!size-5 fill-gray-900" />
+						</button>
+					</svelte:fragment>
+				</AddNewMenuModal>
+				<DeleteConfirm
+					text="Are you sure you want to delete this page?"
+					subText="This action cannot be undone."
+					on:confirm={confirmDeleting}
+				>
+					<svelte:fragment slot="trigger" let:toggle>
+						<button on:click={toggle}>
+							<DeleteIcon classList="!size-5 fill-red-500" />
+						</button>
+					</svelte:fragment>
+				</DeleteConfirm>
+			</div>
+		{/if}
+	</div>
 
 	{#if menu.submenu}
 		<div class="submenu-container" bind:this={submenuContainerEl}>
@@ -168,6 +170,14 @@
 </li>
 {#if loaded}
 	<style>
+		.parent-hoverable:hover > .actions {
+			opacity: 1;
+			pointer-events: auto;
+		}
+		.parent-hoverable:hover > a > .angle {
+			display: none;
+		}
+
 		.submenu-container {
 			overflow: hidden;
 			height: 0px;
