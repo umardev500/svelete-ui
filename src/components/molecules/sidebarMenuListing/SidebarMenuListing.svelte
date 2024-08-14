@@ -113,7 +113,7 @@
 </script>
 
 <li class="sortable-item relative {childrenOfSubMenu ? 'group' : ''}" bind:this={thisElement}>
-	<div class="relative {childrenOfSubMenu ? '' : 'parent-hoverable'}">
+	<div class="relative {childrenOfSubMenu ? '' : $isEditor ? 'parent-hoverable' : ''}">
 		<a
 			class="{classes.join(
 				' '
