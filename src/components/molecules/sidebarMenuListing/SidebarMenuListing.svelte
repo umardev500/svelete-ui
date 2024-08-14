@@ -163,6 +163,7 @@
 			<SidebarMenuList
 				selectableParent={selectable ? thisElement : null}
 				isSubmenu={true}
+				{isMobileNav}
 				posts={menu.submenu}
 			/>
 		</div>
