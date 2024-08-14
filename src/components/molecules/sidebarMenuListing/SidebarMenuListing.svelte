@@ -82,8 +82,9 @@
 			classes.push('text-gray-800');
 			classes.push('font-medium');
 		} else {
-			if (notSubmenu) classes.push('text-gray-400');
+			if (notSubmenu && !childrenOfSubMenu) classes.push('text-gray-400');
 			if (!notSubmenu) classes.push('text-gray-800');
+			console.log(childrenOfSubMenu);
 		}
 	} else {
 		classes.push('text-gray-800');

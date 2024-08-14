@@ -16,11 +16,12 @@
 	};
 
 	let menus: Menu[] = [];
+	let menus2: Menu[] = [];
 	const unsubscribe = leftMenuStore.subscribe((data) => {
 		menus = data;
 	});
 	const unsubscribe2 = rightMenuStore.subscribe((data) => {
-		menus = [...menus, ...data];
+		menus2 = [...menus2, ...data];
 	});
 
 	onDestroy(() => {
@@ -58,6 +59,7 @@
 
 		<div class="px-4 py-6 text-nowrap menus">
 			<SidebarMenuList isMobileNav={true} isSubmenu={false} posts={menus} />
+			<SidebarMenuList isMobileNav={true} isSubmenu={false} posts={menus2} />
 		</div>
 	</div>
 	<!-- End of Content -->
