@@ -11,6 +11,7 @@
 
 	let sortableEl: HTMLElement;
 	export let isMobileNav: boolean = false;
+	export let isSortable: boolean = true;
 
 	export let posts: Menu[] = [];
 	export let isSubmenu: boolean;
@@ -22,6 +23,8 @@
 
 	let instance: Sortable;
 	onMount(() => {
+		if (!isSortable) return;
+
 		segment.subscribe((value) => {
 			if (!value) return;
 			let currentMoveRelatedEl: HTMLElement | null = null;

@@ -59,7 +59,7 @@
 
 		<div class="px-4 py-6 text-nowrap menus">
 			<SidebarMenuList isMobileNav={true} isSubmenu={false} posts={menus} />
-			<SidebarMenuList isMobileNav={true} isSubmenu={false} posts={menus2} />
+			<SidebarMenuList isSortable={false} isMobileNav={true} isSubmenu={false} posts={menus2} />
 		</div>
 	</div>
 	<!-- End of Content -->
