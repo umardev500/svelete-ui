@@ -60,7 +60,7 @@ func add(a, b) {
 		]}
 	>
 		<svelte:fragment slot="tab" let:tabs let:toggle let:activeTab>
-			<div class="flex items-center py-4 px-4 justify-between border-b">
+			<div class="flex items-center py-4 px-4 justify-between border-b flex-wrap gap-4">
 				<div class="flex tab items-center">
 					{#each tabs as tab, i}
 						<button
@@ -69,7 +69,7 @@ func add(a, b) {
 						>
 					{/each}
 				</div>
-				<div class="flex items-center gap-2">
+				<div class="flex items-center gap-2 w-full lg:w-auto">
 					<Button variant="secondary">Cancel</Button>
 					<Button>Save Changes</Button>
 				</div>

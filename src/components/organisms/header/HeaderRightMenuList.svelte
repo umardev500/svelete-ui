@@ -91,8 +91,8 @@
 			</svelte:fragment>
 
 			<svelte:fragment slot="menu">
-				<div class="px-4 text-base pb-1 not-sortable">Versions</div>
-				<div bind:this={versionSortableMenu}>
+				<div class="px-4 text-base pb-1 not-sortable font-medium">Versions</div>
+				<div bind:this={versionSortableMenu} class="mt-1">
 					{#each versions as version}
 						<div
 							bind:this={versionSortableMenu}

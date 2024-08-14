@@ -67,8 +67,14 @@
 				};
 			}
 
+			if (!isMobileNav) {
+				options = {
+					...options,
+					group: 'nested'
+				};
+			}
+
 			instance = Sortable.create(sortableEl, {
-				group: 'nested',
 				animation: 150,
 				onStart: (e) => {
 					const item = e.item;
