@@ -104,7 +104,7 @@
 							<!-- Right icon for editable menu -->
 							{#if $isEditor}
 								<div class="hidden group-hover:flex items-center justify-center gap-1">
-									<AddNewVersionModal>
+									<AddNewVersionModal title="Edit version">
 										<svelte:fragment slot="trigger" let:toggle>
 											<button class="" on:click={toggle}>
 												<PenIcon classList="!size-5 fill-current" />

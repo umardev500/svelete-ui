@@ -11,6 +11,8 @@
 		{ label: 'Getting Started', value: '2' },
 		{ label: 'Guide', value: '3' }
 	];
+
+	export let title = 'Add a New Menu';
 </script>
 
 <ModalHost>
@@ -20,12 +22,12 @@
 
 	<svelte:fragment slot="inner" let:toggle>
 		<div class="bg-white rounded-lg overflow-hidden lg:w-[447px] mx-auto">
-			<ModalHeader on:toggle={toggle} title="Add a New Menu" />
+			<ModalHeader on:toggle={toggle} {title} />
 			<div class="py-6 px-6">
 				<SelectInput classList="mb-4" placeholder="Parent Menu" options={parents} />
 				<TextInput classList="mb-4" label="Name" placeholder="Enter the page name" />
 				<TextInput classList="" label="Slug" placeholder="Enter the page slug" />
-				<Button classList="mt-4" size="large">Save Changes</Button>
+				<Button on:click={toggle} classList="mt-4" size="large">Save Changes</Button>
 			</div>
 		</div>
 	</svelte:fragment>

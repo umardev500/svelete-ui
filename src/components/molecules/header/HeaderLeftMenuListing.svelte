@@ -44,7 +44,7 @@
 		</svelte:fragment>
 
 		<svelte:fragment slot="menu">
-			<AddNewPageModal>
+			<AddNewPageModal title="Edit Page">
 				<svelte:fragment slot="trigger" let:toggle>
 					<button
 						on:click={toggle}

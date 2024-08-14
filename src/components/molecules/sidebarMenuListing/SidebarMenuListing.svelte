@@ -135,7 +135,7 @@
 		<div
 			class="absolute z-10 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto h-full flex items-center gap-2 px-2 right-0 actions"
 		>
-			<AddNewMenuModal>
+			<AddNewMenuModal title="Edit menu">
 				<svelte:fragment slot="trigger" let:toggle>
 					<button on:click={toggle}>
 						<PenIcon classList="!size-5 fill-gray-900" />

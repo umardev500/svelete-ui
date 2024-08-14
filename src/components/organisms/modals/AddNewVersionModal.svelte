@@ -4,6 +4,8 @@
 	import Button from '@components/atoms/button/Button.svelte';
 	import TextInput from '@components/atoms/form/TextInput.svelte';
 	import ModalHost from '../modal/ModalHost.svelte';
+
+	export let title = 'Add a New Version';
 </script>
 
 <ModalHost>
@@ -11,13 +13,13 @@
 		<slot name="trigger" {toggle} />
 	</svelte:fragment>
 
-	<svelte:fragment slot="inner">
+	<svelte:fragment slot="inner" let:toggle>
 		<div class="bg-white rounded-lg overflow-hidden lg:w-[447px] mx-auto">
-			<ModalHeader title="Add a New Version" />
+			<ModalHeader on:toggle={toggle} {title} />
 			<div class="py-6 px-6">
 				<TextInput classList="mb-4" label="Name" placeholder="Enter the page name" />
 				<TextInput classList="" label="Slug" placeholder="Enter the page slug" />
-				<Button classList="mt-4" size="large">Save Changes</Button>
+				<Button on:click={toggle} classList="mt-4" size="large">Save Changes</Button>
 			</div>
 		</div>
 	</svelte:fragment>
