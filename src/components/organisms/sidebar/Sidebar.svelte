@@ -57,9 +57,10 @@
 
 		<div class="h-full px-2 flex items-center justify-between mobile-menu lg:hidden w-full">
 			<div class="flex items-center gap-2">
-				<button on:click={toggle}>
-					<ListIcon />
+				<button>
+					<ArrowLeft />
 				</button>
+
 				<span class="font-bold text-base">API Saga</span>
 			</div>
 
@@ -70,6 +71,9 @@
 				<a href="https://github.com/umardev500">
 					<GithubIcon />
 				</a>
+				<button on:click={toggle}>
+					<ListIcon />
+				</button>
 			</div>
 		</div>
 	</div>
