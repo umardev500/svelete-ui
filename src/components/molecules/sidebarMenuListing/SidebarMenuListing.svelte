@@ -18,6 +18,7 @@
 	export let childrenOfSubMenu: boolean;
 	export let isMobileNav: boolean = false;
 	export let canChangeParent: boolean = true;
+	export let noParentEdit: boolean = false;
 
 	let isCategoryMatched: boolean = false;
 
@@ -144,7 +145,7 @@
 			<div
 				class="absolute z-10 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto h-full flex items-center gap-2 px-2 right-0 actions"
 			>
-				<AddNewMenuModal title="Edit menu">
+				<AddNewMenuModal {noParentEdit} title="Edit menu">
 					<svelte:fragment slot="trigger" let:toggle>
 						<button on:click={toggle}>
 							<PenIcon classList="!size-5 fill-gray-900" />

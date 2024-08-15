@@ -13,6 +13,7 @@
 	export let isMobileNav: boolean = false;
 	export let isSortable: boolean = true;
 	export let canChangeParent: boolean = true;
+	export let noParentEdit: boolean = false;
 
 	export let posts: Menu[] = [];
 	export let isSubmenu: boolean;
@@ -140,6 +141,7 @@
 			{selectableParent}
 			{isMobileNav}
 			{canChangeParent}
+			{noParentEdit}
 			childrenOfSubMenu={isSubmenu}
 			category={parameters.category}
 			menu={post}

@@ -58,7 +58,7 @@
 		<!-- End of Banner -->
 
 		<div class="px-4 py-6 text-nowrap menus">
-			<SidebarMenuList isMobileNav={true} isSubmenu={false} posts={menus} />
+			<SidebarMenuList noParentEdit isMobileNav={true} isSubmenu={false} posts={menus} />
 			<SidebarMenuList
 				canChangeParent={false}
 				isSortable={false}

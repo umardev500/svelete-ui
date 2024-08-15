@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import ModalHeader from '@components/molecules/modal/ModalHeader.svelte';
 
 	import Button from '@components/atoms/button/Button.svelte';
@@ -13,6 +13,7 @@
 	];
 
 	export let title = 'Add a New Menu';
+	export let noParentEdit: boolean = false;
 </script>
 
 <ModalHost>
@@ -24,7 +25,9 @@
 		<div class="bg-white rounded-lg overflow-hidden lg:w-[447px] mx-auto">
 			<ModalHeader on:toggle={toggle} {title} />
 			<div class="py-6 px-6">
-				<SelectInput classList="mb-4" placeholder="Parent Menu" options={parents} />
+				{#if !noParentEdit}
+					<SelectInput classList="mb-4" placeholder="Parent Menu" options={parents} />
+				{/if}
 				<TextInput classList="mb-4" label="Name" placeholder="Enter the page name" />
 				<TextInput classList="" label="Slug" placeholder="Enter the page slug" />
 				<Button on:click={toggle} classList="mt-4" size="large">Save Changes</Button>
