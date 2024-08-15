@@ -12,6 +12,7 @@
 	let sortableEl: HTMLElement;
 	export let isMobileNav: boolean = false;
 	export let isSortable: boolean = true;
+	export let canChangeParent: boolean = true;
 
 	export let posts: Menu[] = [];
 	export let isSubmenu: boolean;
@@ -138,6 +139,7 @@
 		<SidebarMenuListing
 			{selectableParent}
 			{isMobileNav}
+			{canChangeParent}
 			childrenOfSubMenu={isSubmenu}
 			category={parameters.category}
 			menu={post}

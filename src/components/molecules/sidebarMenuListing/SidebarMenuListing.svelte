@@ -17,6 +17,7 @@
 	export let category: string;
 	export let childrenOfSubMenu: boolean;
 	export let isMobileNav: boolean = false;
+	export let canChangeParent: boolean = true;
 
 	let isCategoryMatched: boolean = false;
 
@@ -114,7 +115,13 @@
 </script>
 
 <li class="sortable-item relative {childrenOfSubMenu ? 'group' : ''}" bind:this={thisElement}>
-	<div class="relative {childrenOfSubMenu ? '' : $isEditor ? 'parent-hoverable' : ''}">
+	<div
+		class="relative {childrenOfSubMenu
+			? ''
+			: $isEditor && canChangeParent
+				? 'parent-hoverable'
+				: ''}"
+	>
 		<a
 			class="{classes.join(
 				' '
