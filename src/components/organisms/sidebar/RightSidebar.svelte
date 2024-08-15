@@ -5,7 +5,7 @@
 
 <aside
 	bind:this={node}
-	class="post-right-sidebar border-l h-full bg-white px-4 py-4 right-0 w-[250px] {classList}"
+	class="post-right-sidebar bottom-0 top-16 flex flex-col justify-between border-l bg-white px-4 py-4 right-0 w-[250px] {classList}"
 >
 	<ul>
 		<li>
@@ -33,4 +33,6 @@
 			<a class="text-gray-700 flex py-2 text-base" href="/post/requirements">Build</a>
 		</li>
 	</ul>
+
+	<div class="bg-gray-200 rounded-lg mx-4 h-[5.625rem] bottom-0"></div>
 </aside>
