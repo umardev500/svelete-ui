@@ -34,5 +34,5 @@
 		</li>
 	</ul>
 
-	<div class="bg-gray-200 rounded-lg mx-4 h-[5.625rem] bottom-0"></div>
+	<div class="bg-gray-200 rounded-lg mx-4 h-[5.625rem] bottom-0 hidden lg:block"></div>
 </aside>
